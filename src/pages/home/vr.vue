@@ -1,3 +1,5 @@
 <template>
-      <view class="index">vr</view>
+      <view class="index">
+           <web-view src="https://ibs.utuapp.cn"></web-view>
+      </view>
 </template>

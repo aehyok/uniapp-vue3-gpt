@@ -92,13 +92,20 @@
 <style lang="scss" scoped>
 .index{
     width: 100%;
+    margin: 20px;
 }
 .test-h {
+    margin: 20px;
+    padding: 10px;
     height: 300px;
     width: 100%;
 }
-.slide-image {
-    display: block;
+// .slide-image {
+//     display: block;
+//     width: 100vw;
+//     height: 280px;
+// }
+image {
     width: 100vw;
     height: 280px;
 }
