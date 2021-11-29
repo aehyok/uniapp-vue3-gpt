@@ -7,8 +7,5 @@ export default {
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black'
-  },
-  // h5: {
-  //   esnextModules: ['taro-ui']
-  // }
+  }
 }

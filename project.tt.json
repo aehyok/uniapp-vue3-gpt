@@ -1,9 +1,13 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "taro-vue3-demo",
+  "projectname": "myApp",
+  "description": "NutUI Vue3 TypeScript",
   "appid": "touristappid",
   "setting": {
+    "urlCheck": true,
     "es6": false,
+    "postcss": false,
     "minified": false
-  }
+  },
+  "compileType": "miniprogram"
 }
