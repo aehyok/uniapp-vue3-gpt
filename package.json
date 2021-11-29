@@ -2,7 +2,7 @@
   "name": "myApp",
   "version": "1.0.0",
   "private": true,
-  "description": "NutUI Vue3 TypeScript",
+  "description": "",
   "templateInfo": {
     "name": "vue3-NutUI",
     "typescript": true,

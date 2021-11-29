@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
   "projectname": "myApp",
-  "description": "NutUI Vue3 TypeScript",
+  "description": "",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,
