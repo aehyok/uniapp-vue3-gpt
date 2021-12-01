@@ -1,14 +1,26 @@
-import { createApp } from 'vue'
-import { Button, Toast } from '@nutui/nutui-taro';
+﻿import { createApp } from 'vue'
+// import { Button, Toast ,Divider  } from '@nutui/nutui-taro';
+import {  Button, Toast ,Divider,InfiniteLoading,Icon,NoticeBar  } from '@nutui/nutui-taro';
 import '@nutui/nutui-taro/dist/style.css';
 
 import './app.scss'
+
+import districtTopModule from './components/districtTopModule.vue';
+import villageTopModule from './components/villageTopModule.vue';
 
 const App = createApp({
   onShow (options) {},
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
 })
 
-App.use(Button).use(Toast)
+App
+.component('districtTopModule',districtTopModule)
+.component('villageTopModule',villageTopModule)
+.use(Button)
+.use(Toast)
+.use(Divider)
+.use(InfiniteLoading)
+.use(Icon)
+.use(NoticeBar)
 
 export default App
