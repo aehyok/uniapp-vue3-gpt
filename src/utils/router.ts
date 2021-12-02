@@ -1,13 +1,13 @@
 import Taro from '@tarojs/taro'
 
-export function useRouter() {
+export default function useRouter() {
   /**
    * 跳转路由
    * @param  url路径 {string}
    */
   const push = (url: string) => {
     Taro.navigateTo({
-      url: url
+      url
     })
   }
 
