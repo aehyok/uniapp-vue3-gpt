@@ -8,8 +8,9 @@
   </div>
 </template>
 <script setup>
-  import itemDataVue from './itemData.vue'
   import { ref } from 'vue'
+  import itemDataVue from './itemData.vue'
+
   const list = ref([
     {
       name: '村庄数',

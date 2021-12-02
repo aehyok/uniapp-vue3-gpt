@@ -9,6 +9,7 @@ declare module '*.scss'
 declare module '*.sass'
 declare module '*.styl'
 
+declare module '@tarojs/taro'
 // @ts-ignore
 declare const process: {
   env: {

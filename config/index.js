@@ -1,5 +1,5 @@
 const config = {
-  projectName: 'myApp-aehyok',
+  projectName: 'dvs',
   date: '2021-12-1',
   designWidth: 375,
   deviceRatio: {

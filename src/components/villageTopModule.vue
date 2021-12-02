@@ -14,8 +14,9 @@
   </div>
 </template>
 <script setup>
-  import itemDataVue from './itemData.vue'
   import { ref } from 'vue'
+  import itemDataVue from './itemData.vue'
+
   const horseLamp1 = ['惊喜红包免费领', '爆款准点秒', '买超值优惠', '赢百万京豆']
 
   const list = ref([

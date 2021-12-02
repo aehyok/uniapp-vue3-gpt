@@ -16,6 +16,7 @@
 </template>
 <script setup>
   import { ref } from 'vue'
+
   const list = ref([
     {
       name: '村庄数',
@@ -33,13 +34,12 @@
 </script>
 <style lang="scss">
   .three_modules {
-    // width: 90%;
-    margin-top: 200rpx;
-    padding: 10rpx 20rpx;
+    width: 100%;
+    box-sizing: border-box;
     .forModules {
       display: flex;
       align-items: center;
-      width: 100%;
+      // width: 100%;
       height: 200rpx;
       margin: 30rpx 0;
       padding: 0 20rpx;

@@ -22,7 +22,7 @@
     }
   })
   const goto = () => {
-    // console.log(this.to,'跳转过去的路由');
+    console.log('跳转过去的路由')
   }
 </script>
 
@@ -33,8 +33,9 @@
       margin: 10rpx 0;
       display: flex;
       justify-content: space-between;
-      .title {
-      }
+      // .title {
+
+      // }
     }
   }
 </style>

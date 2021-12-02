@@ -18,6 +18,7 @@
 <script setup>
   // import itemDataVue from "../../components/itemData.vue";
   import { ref } from 'vue'
+
   const list = ref([
     {
       name: '村庄数',

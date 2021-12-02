@@ -4,14 +4,12 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: [
-    'plugin:vue/essential',
-    'airbnb-base',
-    'plugin:prettier/recommended' // 添加 prettier 插件
-  ],
+  extends: ['plugin:vue/essential', 'airbnb-base', 'plugin:prettier/recommended'],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
+    defineProps: true,
+    defineEmits: true
   },
   parserOptions: {
     ecmaVersion: 2018,
@@ -20,14 +18,15 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    // semi: 'off', // 结尾分号设置
-    'comma-dangle': 'never', // 尾随一个多余的逗号
-    'vue/no-multiple-template-root': 'off',
-    'vue/require-v-for-key': 'off',
     'no-console': 'off', // console。log可用
-    'vue/multi-word-component-names': 'off',
+    'no-unused-vars': 'off',
+    'vue/no-unused-vars': 'off',
     'import/no-unresolved': 'off',
-    'import/extensions': 'off',
-    'no-plusplus': 'off' // i++可用
+    'vue/require-v-for-key': 'off',
+    'vue/no-multiple-template-root': 'off',
+    'vue/valid-v-for': 'off',
+    'no-plusplus': 'off', // i++可用
+    'vue/multi-word-component-names': 'off',
+    'global-require': 'off'
   }
 }

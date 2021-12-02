@@ -17,7 +17,7 @@
           <p>{{ item }}</p>
         </div>
         <div class="villageMoodProfileInfo">
-          <p>天溪村</p>
+          <p>天溪22村</p>
           <p>陕西省咸阳市杨陵区田西大道8号</p>
           <div class="swiper_module_body">
             <itemDataVue v-for="(item, index) in list" :data="item" />
@@ -28,9 +28,10 @@
   </div>
 </template>
 <script setup>
-  import itemDataVue from '../../components/itemData.vue'
   import { ScrollView } from '@tarojs/components'
   import { ref, reactive } from 'vue'
+  import itemDataVue from '../../components/itemData.vue'
+
   const scrollTop = ref(0)
   const toView = 'demo2'
   const refreshHasMore = ref(true)

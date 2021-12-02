@@ -1,11 +1,12 @@
 <template>
-  <div class="title">test</div>
+  <div class="title" @click="handleClick">test</div>
   <hello></hello>
 </template>
 
 <script setup>
   import { reactive } from 'vue'
   import hello from '../../components/hello/index.vue'
+
   const state = reactive({
     msg: '欢迎使用 NutUI3.0 开发小程序',
     msg2: '你成功了～',
@@ -14,11 +15,9 @@
     cover: false
   })
 
-  const handleClick = (type, msg, cover = false) => {
+  // 暂时未定义test--test
+  const handleClick = () => {
     state.show = true
-    state.msg2 = msg
-    state.type = type
-    state.cover = cover
   }
 </script>
 

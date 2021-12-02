@@ -1,5 +1,8 @@
 import Taro from '@tarojs/taro'
 
+const test = 1
+console.log(test)
+
 export default function useRouter() {
   /**
    * 跳转路由

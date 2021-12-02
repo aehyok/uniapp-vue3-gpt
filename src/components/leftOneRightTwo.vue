@@ -12,6 +12,7 @@
 </template>
 <script setup>
   import { ref } from 'vue'
+
   const list = ref([
     {
       name: '村庄数',

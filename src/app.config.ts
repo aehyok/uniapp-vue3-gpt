@@ -10,7 +10,7 @@ export default {
     list: [
       {
         pagePath: 'pages/home/index',
-        text: '首页'
+        text: '首1页'
         // 未点击时显示的图片
         // iconPath:"pages/images/btn_wawj.png",
         // 点击后显示的图片
