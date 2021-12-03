@@ -1,9 +1,9 @@
 export default {
   pages: [
+    'pages/mine/index',
     'pages/home/index',
     'pages/loveVillage/index',
     'pages/loveFamily/index',
-    'pages/mine/index',
     'pages/test/index'
   ],
   tabBar: {

@@ -1,17 +1,12 @@
 <template>
-  <button
-    type="primary"
-    @click="clickPhoneNumber"
-    open-type="getPhoneNumber"
-    @getphonenumber="getPhoneNumber"
-    >获取手机号</button
-  >
+  <web-view src="https://dvs-dev.sunlight-tech.com/wechat"></web-view>
 </template>
 
 <script setup>
   import { reactive, onMounted } from 'vue'
-  import Taro from '@tarojs/taro'
+  import Taro, { cloud } from '@tarojs/taro'
 
+  const db = cloud.database()
   const clickPhoneNumber = () => {
     console.log('clickPhoneNumber')
   }
@@ -24,7 +19,21 @@
 
   onMounted(() => {
     console.log('ssss--onMounted')
+    db.collection('dvs')
+      .doc('0448022461a975c2002510b37bff7757')
+      .get()
+      .then((res) => {
+        console.log(res, 'ssssss')
+      })
 
+    // db.collection('dvs')
+    //   .doc('0448022461a975c2002510b37bff7757')
+    //   .get({
+    //     success(res) {
+    //       // res.data 包含该记录的数据
+    //       console.log(res.data, '--ss--')
+    //     }
+    //   })
     Taro.checkSession({
       success() {
         // session_key 未过期，并且在本生命周期一直有效
