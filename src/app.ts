@@ -4,7 +4,7 @@ import { cloud } from '@tarojs/taro'
 import { Button, Toast, Divider, InfiniteLoading, Icon, NoticeBar } from '@nutui/nutui-taro'
 import '@nutui/nutui-taro/dist/style.css'
 import './app.scss'
-
+import 'weapp-cookie'
 import districtTopModule from './components/districtTopModule.vue'
 import villageTopModule from './components/villageTopModule.vue'
 

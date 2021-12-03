@@ -43,12 +43,13 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@tarojs/runtime": "3.3.15",
-    "@tarojs/taro": "3.3.15",
+    "@nutui/nutui-taro": "^3.1.8",
     "@tarojs/components": "3.3.15",
     "@tarojs/plugin-html": "3.3.15",
+    "@tarojs/runtime": "3.3.15",
+    "@tarojs/taro": "3.3.15",
     "vue": "^3.0.0",
-    "@nutui/nutui-taro": "^3.1.8"
+    "weapp-cookie": "^1.4.8"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
