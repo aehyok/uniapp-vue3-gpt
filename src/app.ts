@@ -1,7 +1,7 @@
 ﻿import { createApp } from 'vue'
 // import { Button, Toast ,Divider  } from '@nutui/nutui-taro';
 import { cloud } from '@tarojs/taro'
-import { Button, Toast, Divider, InfiniteLoading, Icon, NoticeBar } from '@nutui/nutui-taro'
+import { Button, Toast, Divider, InfiniteLoading, Icon, NoticeBar, Navbar } from '@nutui/nutui-taro'
 import '@nutui/nutui-taro/dist/style.css'
 import './app.scss'
 import 'weapp-cookie'
@@ -14,9 +14,9 @@ const App = createApp({
 })
 
 // 设置环境id
-cloud.init({
-  env: 'aehyok-3gpo5005aa878045'
-})
+// cloud.init({
+//   env: 'aehyok-3gpo5005aa878045'
+// })
 App.component('districtTopModule', districtTopModule)
   .component('villageTopModule', villageTopModule)
   .use(Button)
@@ -25,5 +25,6 @@ App.component('districtTopModule', districtTopModule)
   .use(InfiniteLoading)
   .use(Icon)
   .use(NoticeBar)
+  .use(Navbar)
 
 export default App

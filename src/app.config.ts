@@ -1,10 +1,10 @@
 export default {
   pages: [
-    'pages/mine/index',
     'pages/home/index',
+    'pages/mine/index',
+    'pages/test/index',
     'pages/loveVillage/index',
-    'pages/loveFamily/index',
-    'pages/test/index'
+    'pages/loveFamily/index'
   ],
   tabBar: {
     list: [
@@ -31,6 +31,7 @@ export default {
     ]
   },
   window: {
+    // navigationStyle: 'custom',
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',

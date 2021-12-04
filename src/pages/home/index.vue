@@ -1,31 +1,18 @@
 <template>
   <div class="index">
-    <!-- 轮播 与 地区简介-->
-    <swiperComVue componentName="districtTopModule" />
-    <!-- 三个模块 -->
-    <div style="margin-top: 250rpx; padding: 0 20rpx">
-      <iconInfoAndJumpVue />
-    </div>
-    <!-- 生活服务 -->
-    <titleSlotVue title="生活服务">
-      <leftOneRightTwo />
-    </titleSlotVue>
-    <titleSlotVue title="村情概况">
-      <villageMoodProfileVue />
-    </titleSlotVue>
     <nut-divider>以1下2无内容</nut-divider>
   </div>
 </template>
 
 <script setup>
-  import { reactive } from 'vue'
-  import swiperComVue from '../../components/swiperCom.vue'
-  import iconInfoAndJumpVue from '../../components/iconInfoAndJump.vue'
-  import leftOneRightTwo from '../../components/leftOneRightTwo.vue'
-  import titleSlotVue from '../../components/titleSlot.vue'
-  import villageMoodProfileVue from './villageMoodProfile.vue'
+  // import { reactive } from 'vue'
+  // // import swiperComVue from '../../components/swiperCom.vue'
+  // // import iconInfoAndJumpVue from '../../components/iconInfoAndJump.vue'
+  // // import leftOneRightTwo from '../../components/leftOneRightTwo.vue'
+  // // import titleSlotVue from '../../components/titleSlot.vue'
+  // // import villageMoodProfileVue from './villageMoodProfile.vue'
 
-  const state = reactive({})
+  // const state = reactive({})
 </script>
 
 <style lang="scss">

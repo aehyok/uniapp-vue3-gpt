@@ -1,11 +1,22 @@
 <template>
-  <web-view src="https://dvs-dev.sunlight-tech.com/wechat" @message="handleMessage" />
+  <nut-navbar title="订单11详情" @on-click-back="back" :left-show="1"> </nut-navbar>
+  <web-view @message="handleGetMessage" :src="state.url"></web-view>
 </template>
-
 <script setup>
-  const handleMessage = () => {
-    console.log('hanleMessage')
+  import { reactive } from 'vue'
+
+  const handleGetMessage = (e) => {
+    console.log(e, '公众号传递的数据')
   }
+  const leftShow = true
+  const back = () => {
+    console.log('back')
+    // const url = ref('https://dvs-dev.sunlight-tech.com/wechat')
+  }
+
+  const state = reactive({
+    url: 'https://dvs-dev.sunlight-tech.com/wechat'
+  })
 </script>
 
 <style lang="scss">

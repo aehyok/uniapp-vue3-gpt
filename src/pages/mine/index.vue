@@ -1,12 +1,16 @@
 <template>
-  <web-view src="https://dvs-dev.sunlight-tech.com/wechat"></web-view>
+  <nut-navbar title="订单详情" :left-show="leftShow" icon="share"> </nut-navbar>
+  1111111
+  <button @click="jumpClick"> 跳转</button>
 </template>
 
 <script setup>
-  import { reactive, onMounted } from 'vue'
+  import { reactive, onMounted, ref } from 'vue'
   import Taro, { cloud } from '@tarojs/taro'
+  import useRouter from '../../utils/router.ts'
 
-  const db = cloud.database()
+  const router = useRouter()
+  // router.push('/pages/test/index')
   const clickPhoneNumber = () => {
     console.log('clickPhoneNumber')
   }
@@ -17,14 +21,12 @@
     console.log(e.detail.encryptedData)
   }
 
+  const jumpClick = () => {
+    router.location('/pages/test/index')
+  }
+  const leftShow = ref(true)
   onMounted(() => {
     console.log('ssss--onMounted')
-    db.collection('dvs')
-      .doc('0448022461a975c2002510b37bff7757')
-      .get()
-      .then((res) => {
-        console.log(res, 'ssssss')
-      })
 
     // db.collection('dvs')
     //   .doc('0448022461a975c2002510b37bff7757')
