@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = {
   projectName: 'dvs',
   date: '2021-12-1',
@@ -12,6 +14,10 @@ const config = {
   outputRoot: 'dist',
   plugins: ['@tarojs/plugin-html'],
   defineConstants: {},
+  alias: {
+    '@utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@store': path.resolve(__dirname, '..', 'src/store')
+  },
   copy: {
     patterns: [],
     options: {}

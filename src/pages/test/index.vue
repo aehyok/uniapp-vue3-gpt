@@ -4,7 +4,16 @@
 </template>
 <script setup>
   import { reactive } from 'vue'
+  import cookies from 'weapp-cookie'
 
+  // 获取 cookie
+  console.log('11111111111')
+  const token = cookies.get('token')
+  if (token) {
+    cookies.set('token-mini-program', 'ssss-dddd-ffff-cccc', {
+      domain: 'sunlight-tech.com'
+    })
+  }
   const handleGetMessage = (e) => {
     console.log(e, '公众号传递的数据')
   }
@@ -15,7 +24,7 @@
   }
 
   const state = reactive({
-    url: 'https://dvs-dev.sunlight-tech.com/wechat'
+    url: 'https://dvs-dev.sunlight-tech.com/wechat?test=11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122'
   })
 </script>
 

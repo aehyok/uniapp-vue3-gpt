@@ -1,7 +1,8 @@
 export default {
   pages: [
-    'pages/home/index',
     'pages/mine/index',
+    'pages/cookies/index',
+    'pages/home/index',
     'pages/test/index',
     'pages/loveVillage/index',
     'pages/loveFamily/index'
