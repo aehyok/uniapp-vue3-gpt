@@ -1,5 +1,6 @@
 export default {
   pages: [
+    'pages/echarts/index',
     'pages/mine/index',
     'pages/cookies/index',
     'pages/home/index',
