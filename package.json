@@ -51,7 +51,8 @@
     "@tarojs/taro": "3.3.15",
     "echarts": "^5.2.2",
     "vue": "^3.0.0",
-    "weapp-cookie": "^1.4.8"
+    "weapp-cookie": "^1.4.8",
+    "terser-webpack-plugin": "^5.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
@@ -66,6 +67,7 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-plugin-import": "^1.13.3",
     "babel-preset-taro": "3.3.15",
+    "cache-loader": "^4.1.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.3.0",
@@ -80,6 +82,8 @@
     "lint-staged": "^12.1.2",
     "prettier": "^2.4.1",
     "stylelint": "9.3.0",
+    "taro-plugin-compiler-optimization": "^1.0.1",
+    "thread-loader": "^3.0.4",
     "typescript": "^3.7.0",
     "vue-loader": "^16.0.0-beta.8"
   },

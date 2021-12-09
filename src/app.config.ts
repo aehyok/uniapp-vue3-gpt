@@ -3,6 +3,7 @@ export default {
     'pages/home/index',
     'pages/webview/index',
     'pages/main/index',
+    'pages/navbar-customer/index',
     'pages/echarts/index',
     'pages/mine/index',
     'pages/cookies/index',
