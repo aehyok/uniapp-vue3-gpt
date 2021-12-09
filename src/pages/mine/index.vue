@@ -112,7 +112,7 @@
     background: #fff;
     width: 100%;
     height: 38vw;
-    margin-top: 14vw;
+    margin-top: 28vw;
     margin-bottom: 2.5vw;
     border-radius: 3px;
     position: relative;

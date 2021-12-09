@@ -1,7 +1,17 @@
 ﻿import { createApp } from 'vue'
 // import { Button, Toast ,Divider  } from '@nutui/nutui-taro';
 import { cloud } from '@tarojs/taro'
-import { Button, Toast, Divider, InfiniteLoading, Icon, NoticeBar, Navbar } from '@nutui/nutui-taro'
+import {
+  Button,
+  Toast,
+  Divider,
+  InfiniteLoading,
+  Icon,
+  NoticeBar,
+  Navbar,
+  CellGroup,
+  Cell
+} from '@nutui/nutui-taro'
 import '@nutui/nutui-taro/dist/style.css'
 import './app.scss'
 import 'weapp-cookie'
@@ -26,5 +36,7 @@ App.component('districtTopModule', districtTopModule)
   .use(Icon)
   .use(NoticeBar)
   .use(Navbar)
+  .use(CellGroup)
+  .use(Cell)
 
 export default App

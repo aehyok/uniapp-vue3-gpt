@@ -5,10 +5,11 @@
   </view>
 </template>
 
-<script setup>
+<script lang="ts" setup>
   import { reactive } from 'vue'
   // eslint-disable-next-line import/extensions
-  import * as echarts from '@components/ec-canvas/echarts'
+  // import * as echarts from '@components/ec-canvas/echarts'
+  import * as echarts from 'echarts'
   import './index.scss'
 
   function initChart(canvas, width, height) {

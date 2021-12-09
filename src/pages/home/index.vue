@@ -1,18 +1,19 @@
 <template>
   <div class="index">
-    <nut-divider>以1下2无内容</nut-divider>
+    <nut-cell title="跳转到webview页面" is-link @click="jumpWebViewClick"></nut-cell>
   </div>
 </template>
 
 <script setup>
-  // import { reactive } from 'vue'
-  // // import swiperComVue from '../../components/swiperCom.vue'
-  // // import iconInfoAndJumpVue from '../../components/iconInfoAndJump.vue'
-  // // import leftOneRightTwo from '../../components/leftOneRightTwo.vue'
-  // // import titleSlotVue from '../../components/titleSlot.vue'
-  // // import villageMoodProfileVue from './villageMoodProfile.vue'
+  import useRouter from '@utils/router'
 
+  const router = useRouter()
   // const state = reactive({})
+
+  const jumpWebViewClick = () => {
+    console.log('跳转到webview页面')
+    router.location('/pages/webview/index')
+  }
 </script>
 
 <style lang="scss">

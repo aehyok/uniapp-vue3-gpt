@@ -27,6 +27,14 @@ module.exports = {
     'vue/valid-v-for': 'off',
     'no-plusplus': 'off', // i++可用
     'vue/multi-word-component-names': 'off',
-    'global-require': 'off'
+    'global-require': 'off',
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        js: 'never',
+        vue: 'never'
+      }
+    ]
   }
 }

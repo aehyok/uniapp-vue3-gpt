@@ -6,6 +6,7 @@
 </template>
 
 <script setup>
+  // eslint-disable-next-line import/extensions
   import { reactive } from 'vue'
   // eslint-disable-next-line import/extensions
   import * as echarts from '@components/ec-canvas/echarts'
