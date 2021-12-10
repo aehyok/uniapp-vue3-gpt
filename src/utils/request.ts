@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro'
+import domain from '@utils/domain'
 
 const CODE_SUCCESS = '200'
 const CODE_AUTH_EXPIRED = '600'
@@ -20,22 +21,28 @@ function updateStorage(data = {}) {
  * 简易封装网络请求
  * @param {*} options
  */
-export default async function fetch(options) {
-  const { url, payload, method = 'GET', showToast = true, autoLogin = true } = options
+export default async function request(options) {
+  const { url, data, method = 'GET', showToast = true, autoLogin = true } = options
+  console.log(options, 'payload', data)
   const token = await getStorage('token')
-  const header = token ? { 'WX-PIN-SESSION': token, 'X-WX-3RD-Session': token } : {}
+  const header = token ? { Authorization: token } : {}
   if (method === 'POST') {
+    header.Authorization = 'token'
     header['content-type'] = 'application/json'
   }
-
+  console.log(header, 'header--')
+  const requestUrl = domain + url
+  console.log(requestUrl, 'requestUrl--')
   return Taro.request({
-    url,
+    url: requestUrl,
     method,
-    data: payload,
-    header
+    data
+    // header
   })
     .then(async (res) => {
-      const { code, data } = res.data
+      console.log(res, 'taro.request')
+      const { code, data: dataList } = res.data
+      console.log(dataList, '--dataList--')
       if (code !== CODE_SUCCESS) {
         if (code === CODE_AUTH_EXPIRED) {
           await updateStorage({})
@@ -46,17 +53,12 @@ export default async function fetch(options) {
       return data
     })
     .catch((err) => {
+      console.log(err, 'request.err')
       const defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常'
       if (showToast) {
         Taro.showToast({
           title: (err && err.errorMsg) || defaultMsg,
           icon: 'none'
-        })
-      }
-
-      if (err.code === CODE_AUTH_EXPIRED && autoLogin) {
-        Taro.navigateTo({
-          url: '/pages/user-login/user-login'
         })
       }
 

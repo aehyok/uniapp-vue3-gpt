@@ -3,7 +3,6 @@
 </template>
 <script setup>
   import { reactive } from 'vue'
-  import cookies from 'weapp-cookie'
 </script>
 
 <style lang="scss">

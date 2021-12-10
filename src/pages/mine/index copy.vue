@@ -13,7 +13,7 @@
 <script setup>
   import { reactive, onMounted } from 'vue'
   import Taro, { cloud } from '@tarojs/taro'
-  import cookies from 'weapp-cookie'
+
   import useRouter from '../../utils/router.ts'
 
   // // 获取 cookie
