@@ -13,6 +13,7 @@
     <nut-cell title="跳转到echart页面" is-link @click="jumpEchartClick"></nut-cell>
     <nut-cell title="Navbar自定义底部" is-link @click="jumpNavbarCustomerClick"></nut-cell>
     <nut-cell title="请求接口地址测试" is-link @click="jumpERequestClick"></nut-cell>
+    <nut-cell title="请求微信api获取手机号" is-link @click="jumpClick('phone-number')"></nut-cell>
   </div>
 </template>
 
@@ -58,6 +59,10 @@
         })
       }
     })
+  }
+
+  const jumpClick = (page) => {
+    router.push(`/pages/${page}/index`)
   }
   console.log(domain, 'domain--')
 </script>

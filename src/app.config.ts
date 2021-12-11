@@ -1,6 +1,7 @@
 export default {
   pages: [
     'pages/home/index',
+    'pages/phone-number/index',
     'pages/webview/index',
     'pages/main/index',
     'pages/navbar-customer/index',
