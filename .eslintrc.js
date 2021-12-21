@@ -24,6 +24,7 @@ module.exports = {
     'vue/require-v-for-key': 'off',
     'vue/no-multiple-template-root': 'off',
     'vue/valid-v-for': 'off',
-    'no-plusplus': 'off' // i++可用
+    'no-plusplus': 'off', // i++可用
+    'import/prefer-default-export': 'off'
   }
 }
