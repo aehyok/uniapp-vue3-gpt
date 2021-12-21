@@ -1,24 +1,30 @@
 <template>
-  <nut-navbar title="订单11详情" @on-click-back="back" :left-show="1"> </nut-navbar>
-  <web-view @message="handleGetMessage" :src="state.url"></web-view>
+  <web-view :src="state.url"></web-view>
 </template>
-<script setup>
+<script lang="ts" setup>
   import { reactive } from 'vue'
+  import { getAccountInfoSync } from '@tarojs/taro'
+  import { useDidShow } from '@/hooks/life'
 
-  // 获取 cookie
-  console.log('11111111111')
-  const handleGetMessage = (e) => {
-    console.log(e, '公众号传递的数据')
-  }
-  const leftShow = true
-  const back = () => {
-    console.log('back')
-    // const url = ref('https://dvs-dev.sunlight-tech.com/wechat')
+  const dictionary: { [key: string]: string } = {
+    develop: 'https://dvs-dev.sunlight-tech.com/wechat',
+    trial: 'https://dvs-sit1.sunlight-tech.com/wechat',
+    release: 'https://dvs-yangling.sunlight-tech.com/wechat'
   }
 
-  const state = reactive({
-    url: 'https://dvs-dev.sunlight-tech.com/wechat?test=11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122'
+  useDidShow(() => {
+    console.log('----sueDidShow----')
   })
+  let random = Math.round(Math.random() * 100)
+  // 默认添加了url参数
+  const state = reactive({
+    url: `https://dvs-dev.sunlight-tech.com/wechat?random=${random}&test=11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122`
+  })
+
+  const env = getAccountInfoSync()
+  console.log(env, '当前小程序的运行环境', dictionary[env.miniProgram.envVersion])
+  state.url = dictionary[env.miniProgram.envVersion]
+  console.log(state.url, 'state.url')
 </script>
 
 <style lang="scss">

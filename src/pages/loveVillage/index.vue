@@ -1,12 +1,12 @@
 <template>
   <div class="index">
     <!-- 轮播图 -->
-    <swiperComVue componentName="villageTopModule" />
-    <div style="margin-top: 250rpx; padding: 0 30rpx">
-      <leftOneRightTwo />
+    <swiperComVue componentName="villageTopModule" :swiperImageList="state.swiperImageList" />
+    <div style="padding: 0 20rpx">
+      <leftOneRightTwo :item="state.leftOneRightTwoItem" />
     </div>
     <titleSlotVue title="近期村民需填报信息" to="/aa">
-      <iconInfoAndJumpVue />
+      <iconInfoAndJumpVue :item="state.iconInfoAndJumpItem" />
     </titleSlotVue>
     <titleSlotVue title="最新动态" to="/aa">
       <recentNewsVue />
@@ -17,26 +17,61 @@
     <titleSlotVue title="农产品销售" to="/aa">
       <agriculturalMarketingSalesVue />
     </titleSlotVue>
-    <nut-divider>以下无内容</nut-divider>
+    <view style="font-size: 10px; color: #c8c8c8; margin: 20px 0">以下无内容</view>
   </div>
 </template>
 
 <script setup>
   import { reactive } from 'vue'
-  import swiperComVue from '../../components/swiperCom.vue'
-  import leftOneRightTwo from '../../components/leftOneRightTwo.vue'
-  import titleSlotVue from '../../components/titleSlot.vue'
+  import swiperComVue from '../../components/fourMainPage/swiperCom.vue'
+  import leftOneRightTwo from '../../components/fourMainPage/leftOneRightTwo.vue'
+  import titleSlotVue from '../../components/fourMainPage/titleSlot.vue'
   import recentNewsVue from './recentNews.vue'
-  import iconInfoAndJumpVue from '../../components/iconInfoAndJump.vue'
+  import iconInfoAndJumpVue from '../../components/fourMainPage/iconInfoAndJump.vue'
   import threeServicePublicVue from './threeServicePublic.vue'
   import agriculturalMarketingSalesVue from './agriculturalMarketingSales.vue'
 
   const state = reactive({
-    msg: '欢迎使用 NutUI3.0 开发小程序',
-    msg2: '你成功了～',
-    type: 'text',
-    show: false,
-    cover: false
+    iconInfoAndJumpItem: [
+      {
+        imgUrl: 'https://dvs-dev.sunlight-tech.com/wechat/images/village/fill_defult.png',
+        title: '新冠疫苗接种情撒大苏打实打实况登记登记.....',
+        dec: '村民新冠疫苗接种登记啊实打实大大苏打情大苏打情苏打情况记情况记情况记.....',
+        jumpUrl: ''
+      },
+      {
+        imgUrl: 'https://dvs-dev.sunlight-tech.com/wechat/images/village/fill_defult.png',
+        title: '三胎生育计划登记',
+        dec: '计划三胎生育的登记领取补贴',
+        jumpUrl: ''
+      }
+    ],
+    leftOneRightTwoItem: {
+      left: {
+        backgroundImg:
+          'https://dvs-dev.sunlight-tech.com/wechat/images/village/backgroundMapverview.png',
+        title: '村情概况'
+      },
+      right: [
+        {
+          backgroundImg: 'https://dvs-dev.sunlight-tech.com/wechat/images/village/snapshotbg.png',
+          title: '随手拍',
+          imgUrl: 'https://dvs-dev.sunlight-tech.com/wechat/images/village/snapshot.png'
+        },
+        {
+          backgroundImg:
+            'https://dvs-dev.sunlight-tech.com/wechat/images/village/releaseAgriculturalProductsbg.png',
+          title: '发布农产品',
+          imgUrl:
+            'https://dvs-dev.sunlight-tech.com/wechat/images/village/releaseAgriculturalProducts.png'
+        }
+      ]
+    },
+    swiperImageList: [
+      'https://dvs-dev.sunlight-tech.com/wechat/images/village/villageTopBanner.png',
+      'https://dvs-dev.sunlight-tech.com/wechat/images/village/villageTopBanner.png',
+      'https://dvs-dev.sunlight-tech.com/wechat/images/village/villageTopBanner.png'
+    ]
   })
 </script>
 

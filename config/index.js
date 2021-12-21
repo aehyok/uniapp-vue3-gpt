@@ -15,6 +15,7 @@ const config = {
   plugins: ['@tarojs/plugin-html'],
   defineConstants: {},
   alias: {
+    '@': path.resolve(__dirname, '..', 'src'),
     '@utils': path.resolve(__dirname, '..', 'src/utils'),
     '@components': path.resolve(__dirname, '..', 'src/components')
   },
@@ -66,7 +67,9 @@ const config = {
 // eslint-disable-next-line func-names
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line global-require
     return merge({}, config, require('./dev'))
   }
+  // eslint-disable-next-line global-require
   return merge({}, config, require('./prod'))
 }

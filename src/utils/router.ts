@@ -24,19 +24,8 @@ export default function useRouter() {
     })
   }
 
-  /**
-   * 跳转路由
-   * @param  url路径 {string}
-   */
-  const location = (url: string) => {
-    Taro.redirectTo({
-      url
-    })
-  }
-
   return {
     push,
-    go,
-    location
+    go
   }
 }

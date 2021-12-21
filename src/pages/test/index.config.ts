@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '元宇宙1'
+  navigationBarTitleText: 'test页面'
 }

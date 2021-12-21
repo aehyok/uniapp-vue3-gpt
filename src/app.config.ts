@@ -1,22 +1,12 @@
 export default {
   pages: [
     'pages/home/index',
-    'pages/phone-number/index',
-    'pages/webview/index',
-    'pages/main/index',
-    'pages/navbar-customer/index',
+    'pages/authenticationHometown/index',
     'pages/echarts/index',
-    'pages/mine/index',
-    'pages/cookies/index',
-    'pages/test/index',
+    'pages/loveFamily/index',
     'pages/loveVillage/index',
-    'pages/loveFamily/index'
-  ],
-  subpackages: [
-    {
-      root: 'echarts',
-      pages: ['pages/bar-charts/index', 'pages/pie-charts/index']
-    }
+    'pages/mine/index',
+    'pages/test/index'
   ],
   tabBar: {
     list: [
@@ -47,10 +37,10 @@ export default {
     ]
   },
   window: {
-    // navigationStyle: 'custom',
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'black',
+    backgroundColor: '#eeeeee'
   }
 }

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "ES6",
+    "module": "commonjs",
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
@@ -18,16 +18,25 @@
     "jsx": "react",
     "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types", "global.d.ts"],
+    "typeRoots": [
+      "node_modules/@types",
+      "global.d.ts"
+    ],
     "paths": {
       "@utils/*": [
         "src/utils/*"
       ],
       "@components/*": [
         "src/components/*"
-      ]    
+      ],
+      "@/*": [
+        "src/*"
+      ]
     },
   },
-  "exclude": ["node_modules", "dist"],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "compileOnSave": false
 }

@@ -1,68 +1,98 @@
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'taro-axios'
 import Taro from '@tarojs/taro'
-import domain from '@utils/domain'
-
-const CODE_SUCCESS = '200'
-const CODE_AUTH_EXPIRED = '600'
-
-function getStorage(key) {
-  return Taro.getStorage({ key })
-    .then((res) => res.data)
-    .catch(() => '')
+import domain from './domain'
+// import { useRouter } from 'vue-router'
+interface ApiResult {
+  code: number
+  message: string
+  result?: unknown
 }
 
-function updateStorage(data = {}) {
-  return Promise.all([
-    Taro.setStorage({ key: 'token', data: data['3rdSession'] || '' }),
-    Taro.setStorage({ key: 'uid', data: data.uid || '' })
-  ])
-}
-
-/**
- * 简易封装网络请求
- * @param {*} options
- */
-export default async function request(options) {
-  const { url, data, method = 'GET', showToast = true, autoLogin = true } = options
-  console.log(options, 'payload', data)
-  const token = await getStorage('token')
-  const header = token ? { Authorization: token } : {}
-  if (method === 'POST') {
-    header.Authorization = 'token'
-    header['content-type'] = 'application/json'
+const instance = axios.create({
+  // 超时时间 1 分钟
+  timeout: 30 * 1000,
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8'
   }
-  console.log(header, 'header--')
-  const requestUrl = domain + url
-  console.log(requestUrl, 'requestUrl--')
-  return Taro.request({
-    url: requestUrl,
-    method,
-    data
-    // header
+})
+
+instance.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    console.log(config, 'config')
+    config.url = domain + config.url
+    let token = Taro.getStorageSync('token')
+    // eslint-disable-next-line no-param-reassign
+    config.headers = {
+      Authorization: token.authorization || '',
+      'Content-Type': 'application/json',
+      ...config.headers
+    }
+    return config
+  },
+  (err: AxiosError) => {
+    Promise.reject(err)
+  }
+)
+instance.interceptors.response.use(
+  (response: AxiosResponse) => {
+    return response
+  },
+  (err: AxiosError) => {
+    return Promise.reject(err)
+  }
+)
+
+const showToast = (title: string) => {
+  Taro.showToast({
+    title,
+    icon: 'none'
   })
-    .then(async (res) => {
-      console.log(res, 'taro.request')
-      const { code, data: dataList } = res.data
-      console.log(dataList, '--dataList--')
-      if (code !== CODE_SUCCESS) {
-        if (code === CODE_AUTH_EXPIRED) {
-          await updateStorage({})
-        }
-        return Promise.reject(res.data)
-      }
-
-      return data
-    })
-    .catch((err) => {
-      console.log(err, 'request.err')
-      const defaultMsg = err.code === CODE_AUTH_EXPIRED ? '登录失效' : '请求异常'
-      if (showToast) {
-        Taro.showToast({
-          title: (err && err.errorMsg) || defaultMsg,
-          icon: 'none'
-        })
-      }
-
-      // eslint-disable-next-line prefer-promise-reject-errors
-      return Promise.reject({ message: defaultMsg, ...err })
-    })
 }
+const showMessage = (title: unknown) => {
+  const message = JSON.stringify(title).replace(/"/g, '')
+  if (message.indexOf('Network') > -1) {
+    showToast('请求失败，请联系客服')
+  } else if (message.indexOf('timeout') > -1) {
+    showToast('请求超时')
+  } else {
+    showToast(message)
+  }
+}
+const request = (options: AxiosRequestConfig = {}) => {
+  Taro.showLoading({
+    title: '加载中...'
+  })
+  Taro.showNavigationBarLoading()
+  return new Promise<ApiResult>((resolve, reject) => {
+    instance(options)
+      .then((response: AxiosResponse) => {
+        if (response?.status === 200 && response?.data?.code === 200) {
+          return resolve(response.data)
+        }
+        if (response?.status === 200 && response?.data?.code === -2) {
+          try {
+            Taro.clearStorageSync()
+          } catch (e) {
+            // Do something when catch error
+          }
+          console.log('token失效了=-relaunch', response)
+          Taro.reLaunch({ url: '/pages/home/index' })
+        }
+        return reject(response)
+      })
+      .catch((result) => {
+        if (result?.status === 200 && result?.data?.code === -1) {
+          /// /重新登陆 result?.data?.code === -1 ||
+        } else {
+          // 其他情况 code 非 0 情况 有message 就显示
+          showMessage(result?.data?.message ?? result?.message)
+        }
+        reject(result)
+      })
+      .finally(() => {
+        Taro.hideLoading()
+        Taro.hideNavigationBarLoading()
+      })
+  })
+}
+export default request

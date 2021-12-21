@@ -4,12 +4,11 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: ['plugin:vue/essential', 'airbnb-base', 'plugin:prettier/recommended'],
+  extends: ['plugin:vue/essential', 'plugin:prettier/recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
-    defineProps: true,
-    defineEmits: true
+    defineProps: true
   },
   parserOptions: {
     ecmaVersion: 2018,
@@ -25,16 +24,6 @@ module.exports = {
     'vue/require-v-for-key': 'off',
     'vue/no-multiple-template-root': 'off',
     'vue/valid-v-for': 'off',
-    'no-plusplus': 'off', // i++可用
-    'vue/multi-word-component-names': 'off',
-    'global-require': 'off',
-    'import/extensions': [
-      'error',
-      'always',
-      {
-        js: 'never',
-        vue: 'never'
-      }
-    ]
+    'no-plusplus': 'off' // i++可用
   }
 }

@@ -4,7 +4,7 @@
       v-for="(item, index) in Datalist"
       :key="index"
       @click="goDetails(item.id)"
-      :class="index % 2 != 0 ? 'long' : 'short'"
+      class="farmProducts_box"
     >
       <img :src="item.productUrl ? item.productUrl : 'head_portrait-02.png'" alt="" />
       <!-- <div style="height:20px" v-if="index%2 != 0"></div> -->
@@ -17,32 +17,43 @@
         </p>
         <p class="farmProducts_num">数量：{{ item.number }}</p>
       </div>
+      <div class="farmProducts_stick">
+        <img
+          src="https://dvs-dev.sunlight-tech.com/wechat/images/village/agriculturalsalesenterprise.png"
+          alt=""
+        />
+      </div>
     </div>
   </div>
 </template>
 <script setup>
   import { ref } from 'vue'
-
+  import useRouter from '../../utils/router'
+  const router = useRouter()
   const Datalist = ref([
     {
-      productUrl: 'https://storage.360buyimg.com/jdc-article/fristfabu.jpg',
+      productUrl: 'https://dvs-dev.sunlight-tech.com/wechat/images/village/productDefult.png',
       name: '苹果啊',
       price: '100',
       number: '50'
     },
     {
-      productUrl: 'https://storage.360buyimg.com/jdc-article/fristfabu.jpg',
+      productUrl: 'https://dvs-dev.sunlight-tech.com/wechat/images/village/productDefult.png',
       name: '苹果啊',
       price: '100',
       number: '50'
     },
     {
-      productUrl: 'https://storage.360buyimg.com/jdc-article/fristfabu.jpg',
+      productUrl: 'https://dvs-dev.sunlight-tech.com/wechat/images/village/productDefult.png',
       name: '苹果啊',
       price: '100',
       number: '50'
     }
   ])
+
+  const goDetails = () => {
+    router.push('/pages/echarts/index')
+  }
 </script>
 <style lang="scss">
   .farmProducts {
@@ -54,6 +65,9 @@
     & > div:nth-child(2) {
       margin-top: 0px;
     }
+    .farmProducts_box {
+      position: relative;
+    }
 
     & > div {
       width: 48%;
@@ -62,7 +76,7 @@
       margin-top: 10px;
       img {
         width: 100%;
-        height: 166px;
+        height: 139px;
       }
       .farmProducts_title {
         margin: 0;
@@ -97,6 +111,16 @@
       .farmProducts_spanTwo {
         font-size: 24px;
         color: #d33232;
+      }
+      .farmProducts_stick {
+        position: absolute;
+
+        top: 11px;
+        z-index: 2000000;
+        img {
+          width: 38px;
+          height: 18px;
+        }
       }
     }
   }
