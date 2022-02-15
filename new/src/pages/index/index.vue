@@ -12,14 +12,14 @@
     <view :class='["flex-col", styles.group_1]'>
       <view :class='["flex-col", styles.section_2]'>
         <view :class="[styles.grid]">
-          <view :class='["flex-col", styles["grid-item"]]'>
+          <view  @tap="view_15OnClick" :class='["flex-col", styles["grid-item"]]'>
             <image
               src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/620affa35a7e3f0310d06a2d/620b0f8262a7d90011fe0484/16448921349069668316.png"
               :class="[styles.image_1]"
             />
             <text :class="[styles.text_2]">农技达人</text>
           </view>
-          <view :class='["flex-col", styles["grid-item_1"]]'>
+          <view @tap="view_16OnClick"  :class='["flex-col", styles["grid-item_1"]]'>
             <image
               src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/620affa35a7e3f0310d06a2d/620b0f8262a7d90011fe0484/16448921349772519528.png"
               :class="[styles.image_2]"
@@ -119,6 +119,7 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
+import Taro from '@tarojs/taro';
 import styles from './index.module.scss'
 export default {
   name: 'Index',
@@ -134,6 +135,17 @@ export default {
       cover: false
     });
 
+    const view_15OnClick = () => {
+      console.log('console')
+      Taro.navigateTo({ url: '/pages/home/index' });
+    };
+
+    const view_16OnClick = () => {
+      console.log('console')
+      Taro.navigateTo({ url: '/pages/list/index' });
+    };
+
+
     const handleClick = (type, msg, cover = false) => {
       state.show = true;
       state.msg2 = msg;
@@ -144,7 +156,9 @@ export default {
     return {
       ...toRefs(state),
       handleClick,
-      styles
+      styles,
+      view_15OnClick,
+      view_16OnClick
     }
   }
 }
