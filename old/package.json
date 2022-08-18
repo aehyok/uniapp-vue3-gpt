@@ -45,7 +45,7 @@
     "@babel/runtime": "^7.7.7",
     "@nutui/nutui-taro": "^3.1.12",
     "@tarojs/components": "3.3.16",
-    "@tarojs/plugin-html": "3.3.16",
+    "@tarojs/plugin-html": "^3.4.4",
     "@tarojs/runtime": "3.3.16",
     "@tarojs/taro": "3.3.16",
     "taro-axios": "^1.1.1",

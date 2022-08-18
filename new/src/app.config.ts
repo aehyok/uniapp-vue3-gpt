@@ -1,8 +1,10 @@
 export default defineAppConfig({
   pages: [
-    'pages/index/index',
+    'pages/webview/index',
+    'pages/h5/index',
     'pages/home/index',
-    'pages/list/index'
+    'pages/index/index',
+    'pages/list/index',
   ],
   window: {
     backgroundTextStyle: 'light',

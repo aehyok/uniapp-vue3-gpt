@@ -1709,12 +1709,10 @@
     webpack-format-messages "^2.0.5"
     yauzl "2.10.0"
 
-"@tarojs/plugin-html@3.3.16":
-  version "3.3.16"
-  resolved "https://repo.huaweicloud.com/repository/npm/@tarojs/plugin-html/-/plugin-html-3.3.16.tgz#aefba86fd231f88f2e9f8dcfd004e428df7ce4c4"
-  integrity sha512-3vHx39fyqsHlwh58yozbHSHUnnEb8qEbPn4x33DSiEvBt3A5MenQMY5o4AuAn8QQQE/vtaem9b6FRHRllGChWA==
-  dependencies:
-    "@tarojs/shared" "3.3.16"
+"@tarojs/plugin-html@^3.4.4":
+  version "3.4.4"
+  resolved "https://registry.npmmirror.com/@tarojs/plugin-html/-/plugin-html-3.4.4.tgz#5aadfb2d98d5c2b20b1e08d6d51a5be8cf5d0d17"
+  integrity sha512-RkMX+YU2dviMGQ4eQd08BgMU9kn5mK52y76lzj7TlHJG9MPid4oWgx59KLm1b3E8fqa0RGXjQ9dAGDi1d0Xryw==
 
 "@tarojs/plugin-platform-alipay@3.3.16":
   version "3.3.16"

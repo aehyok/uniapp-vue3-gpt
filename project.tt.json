@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "taro3-vue3-demo",
+  "appid": "wxb19c1eeddebb4aa3",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}
