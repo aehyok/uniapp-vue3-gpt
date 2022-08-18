@@ -81,6 +81,9 @@
     "vue-loader": "^16.0.0-beta.8",
     "webpack": "5.69.0"
   },
+  "lint-staged": {
+    "*.{vue,js,ts}": "eslint --fix"
+  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
