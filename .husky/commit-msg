@@ -2,5 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # npx --no-install commitlint --edit
-npm test
+npm run test1
 echo "npx --no-install"

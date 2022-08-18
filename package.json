@@ -29,7 +29,8 @@
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "git": "git add . && git cz && git push",
     "hu": "husky install",
-    "test": "echo 'hello'"
+    "test": "echo 'hello'",
+    "test1": "echo 'hello'"
   },
   "browserslist": [
     "last 3 versions",
