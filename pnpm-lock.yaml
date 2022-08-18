@@ -33,6 +33,7 @@ specifiers:
   eslint: ^8.12.0
   eslint-config-taro: 3.5.2
   eslint-plugin-vue: ^8.0.0
+  husky: ^8.0.1
   style-loader: 1.3.0
   stylelint: ^14.4.0
   typescript: ^4.1.0
@@ -76,6 +77,7 @@ devDependencies:
   eslint: 8.22.0
   eslint-config-taro: 3.5.2_qfxx7ka2reae2d6tlhndyo6pua
   eslint-plugin-vue: 8.7.1_eslint@8.22.0
+  husky: 8.0.1
   style-loader: 1.3.0_webpack@5.69.0
   stylelint: 14.10.0
   typescript: 4.7.4
@@ -7617,6 +7619,12 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: true
+
+  /husky/8.0.1:
+    resolution: {integrity: sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /iconv-lite/0.4.24:

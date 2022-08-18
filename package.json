@@ -27,7 +27,9 @@
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
-    "git": "git add . && git cz"
+    "git": "git add . && git cz && git push",
+    "hu": "husky install",
+    "test": "echo 'hello'"
   },
   "browserslist": [
     "last 3 versions",
