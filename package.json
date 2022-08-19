@@ -82,7 +82,9 @@
     "webpack": "5.69.0"
   },
   "lint-staged": {
-    "*.{vue,js,ts}": "eslint --fix"
+    "*.{vue,js,ts}": [
+      "eslint --fix"
+    ]
   },
   "config": {
     "commitizen": {
