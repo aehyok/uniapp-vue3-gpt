@@ -4,4 +4,3 @@ module.exports = {
   '*.ts': ['prettier --config .prettierrc.js --write', 'eslint --fix --ext .ts'],
   '*.json': 'prettier --config .prettierrc.js --write'
 }
-

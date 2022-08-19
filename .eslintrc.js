@@ -2,13 +2,13 @@
 // https://eslint.vuejs.org/user-guide/#editor-integrations
 
 module.exports = {
-  "extends": ["taro/vue3"],
+  extends: ['taro/vue3'],
   overrides: [
     {
       files: ['src/pages/**/*.vue'],
       rules: {
-        'vue/multi-word-component-names': 0,
-      },
-    },
+        'vue/multi-word-component-names': 0
+      }
+    }
   ]
 }

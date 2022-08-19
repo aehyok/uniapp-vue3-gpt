@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import "./index.scss";
+  import { ref } from 'vue'
+  import './index.scss'
 
-export default {
-  setup() {
-    const msg = ref("Hello world");
+  export default {
+    setup() {
+      const msg = ref('Hello world')
 
-    let c = 1;
-    let d = 111;
-    console.log(c);
-    return {
-      msg
-    };
+      let c = 1
+      let d = 111
+      console.log(c)
+      return {
+        msg
+      }
+    }
   }
-};
 </script>

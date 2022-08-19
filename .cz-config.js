@@ -13,7 +13,10 @@ module.exports = {
       name: 'refactor: 代码重构（不包括 bug 修复、功能新增）'
     },
     { value: 'perf', name: 'perf:     性能优化' },
-    { value: 'chore', name: 'chore:     其他修改, 比如构建流程, 依赖管理、版本好修正.' }
+    {
+      value: 'chore',
+      name: 'chore:     其他修改, 比如构建流程, 依赖管理、版本好修正.'
+    }
   ],
 
   // scope 类型（定义之后，可通过上下键选择）
