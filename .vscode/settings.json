@@ -2,9 +2,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "vue"
-  ]
+  "eslint.validate": ["javascript", "javascriptreact", "vue"]
 }
