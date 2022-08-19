@@ -11,5 +11,6 @@
     "postcss": false,
     "minified": false
   },
+  "lazyCodeLoading": "requiredComponents",
   "compileType": "miniprogram"
 }

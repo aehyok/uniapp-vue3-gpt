@@ -38,6 +38,14 @@
     "isolatedModules": true,
 
     // 编译过程中需要引入的库文件的列表。
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
-  }
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
+    "paths": {
+      "@utils/*": ["src/utils/*"],
+      "@components/*": ["src/components/*"],
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["./src"],
+  "compileOnSave": false
 }

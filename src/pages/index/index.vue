@@ -1,11 +1,14 @@
 <template>
   <view class="index">
-    <text>{{ msg }}</text>
+    <CustomWrapper>
+      <text>{{ msg }}</text>
+    </CustomWrapper>
   </view>
 </template>
 
 <script>
   import { ref } from 'vue'
+  // import { CustomWrapper } from '@tarojs/components'
   import './index.scss'
 
   export default {
