@@ -1,8 +1,0 @@
-.vscode/
-.idea/
-.log/
-node_modules/
-dist/
-src/assets/
-src/components/ec-canvas
-local_
