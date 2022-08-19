@@ -12,11 +12,12 @@
     setup() {
       const msg = ref('Hello world')
 
-      let c = 1
-      let d = 111
-      console.log(c)
+      const c = '1'
+      const d = '111'
+      if (c === 1) console.log(c)
       return {
-        msg
+        msg,
+        d
       }
     }
   }
