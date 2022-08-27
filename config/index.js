@@ -45,6 +45,10 @@ const config = {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
+      },
+      // 开启只能提取分包依赖
+      optimizeMainPackage: {
+        enable: true
       }
     }
   },
