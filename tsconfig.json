@@ -9,6 +9,8 @@
 
     "esModuleInterop": true,
 
+    "jsx": "preserve",
+
     // 从 tslib 导入辅助工具函数（比如 __extends， __rest等）
     "importHelpers": true,
 

@@ -9,9 +9,11 @@ declare module '*.css'
 declare module '*.less'
 declare module '*.scss'
 declare module '*.sass'
-declare module '*.styl'
+declare module '*.style'
 
+// eslint-disable-next-line no-unused-vars
 declare namespace NodeJS {
+  // eslint-disable-next-line no-unused-vars
   interface ProcessEnv {
     TARO_ENV: 'weapp' | 'swan' | 'alipay' | 'h5' | 'rn' | 'tt' | 'quickapp' | 'qq' | 'jd'
   }

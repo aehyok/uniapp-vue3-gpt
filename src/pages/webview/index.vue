@@ -10,7 +10,7 @@
   }
 
   const onLoad = (e: any) => {
-    console.log(e, 'load sucess')
+    console.log(e, 'load success')
   }
   // 默认添加了url参数
   const state = reactive({
