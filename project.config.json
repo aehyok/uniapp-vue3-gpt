@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "taro3-vue3-demo",
+  "projectname": "taro-vue3-h5",
   "description": "",
   "appid": "wxb19c1eeddebb4aa3",
   "setting": {
@@ -11,6 +11,5 @@
     "postcss": false,
     "minified": false
   },
-  "lazyCodeLoading": "requiredComponents",
   "compileType": "miniprogram"
 }

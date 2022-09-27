@@ -17,6 +17,7 @@ module.exports = {
     'vue/no-multiple-template-root': 'off',
     'vue/require-v-for-key': 'off',
     'no-console': 'off', // console。log可用
+    'prefer-const': 0,
     'vue/multi-word-component-names': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',

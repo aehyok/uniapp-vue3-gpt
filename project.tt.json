@@ -1,9 +1,13 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "taro3-vue3-demo",
-  "appid": "wxb19c1eeddebb4aa3",
+  "projectname": "taro-vue3-h5",
+  "description": "",
+  "appid": "touristappid",
   "setting": {
+    "urlCheck": true,
     "es6": false,
+    "postcss": false,
     "minified": false
-  }
+  },
+  "compileType": "miniprogram"
 }

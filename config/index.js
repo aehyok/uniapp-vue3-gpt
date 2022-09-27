@@ -1,17 +1,18 @@
 const path = require('path')
 
 const config = {
-  projectName: 'taro3-vue3-demo',
-  date: '2022-8-18',
-  designWidth: 750,
+  projectName: 'taro-vue3-h5',
+  date: '2022-9-27',
+  designWidth: 375,
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,
-    828: 1.81 / 2
+    828: 1.81 / 2,
+    375: 2 / 1
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: ['@tarojs/plugin-html'],
   defineConstants: {},
   copy: {
     patterns: [],
@@ -27,11 +28,16 @@ const config = {
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
+  sass: {
+    data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`
+  },
   mini: {
     postcss: {
       pxtransform: {
         enable: true,
-        config: {}
+        config: {
+          selectorBlackList: ['nut-']
+        }
       },
       url: {
         enable: true,
@@ -45,16 +51,13 @@ const config = {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
-      },
-      // 开启只能提取分包依赖
-      optimizeMainPackage: {
-        enable: true
       }
     }
   },
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    esnextModules: ['nutui-taro'],
     postcss: {
       autoprefixer: {
         enable: true,
@@ -68,22 +71,12 @@ const config = {
         }
       }
     }
-  },
-  rn: {
-    appName: 'taroDemo',
-    postcss: {
-      cssModules: {
-        enable: false // 默认为 false，如需使用 css modules 功能，则设为 true
-      }
-    }
   }
 }
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line global-require
     return merge({}, config, require('./dev'))
   }
-  // eslint-disable-next-line global-require
   return merge({}, config, require('./prod'))
 }

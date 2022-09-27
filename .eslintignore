@@ -1,1 +1,4 @@
-ec-canvas
+/src/components/ec-canvas/
+/src/components/ec-canvas/echarts.js
+babel.config.js
+config/index.js

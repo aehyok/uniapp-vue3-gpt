@@ -1,4 +1,4 @@
-import { getAccountInfoSync } from '@tarojs/taro'
+import Taro, { getAccountInfoSync } from '@tarojs/taro'
 
 // xuanen、lingyuan、dev
 const whichEnv = 'dev'
@@ -8,5 +8,14 @@ const dictionary: { [key: string]: string } = {
   release: `https://dvs-${whichEnv}.sunlight-tech.com` // 正式环境
 }
 
-const env = getAccountInfoSync()
-export default dictionary[env.miniProgram.envVersion]
+console.log(Taro.getEnv(), '00000')
+
+const domain = () => {
+  if (Taro.getEnv() === 'WEB') {
+    return dictionary.develop
+  }
+  const env = getAccountInfoSync()
+  return dictionary[env.miniProgram.envVersion]
+}
+
+export default domain
