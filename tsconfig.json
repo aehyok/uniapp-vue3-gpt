@@ -35,19 +35,19 @@
     "target": "esnext",
 
     // 要包含的类型声明文件名列表
-    "types": [],
+    "types": ["node", "webpack-env"],
 
     "isolatedModules": true,
 
     // 编译过程中需要引入的库文件的列表。
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
     "paths": {
-      "@utils/*": ["src/utils/*"],
-      "@components/*": ["src/components/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/components/*": ["src/components/*"],
       "@/*": ["src/*"]
     }
   },
   "exclude": ["node_modules", "dist"],
   "include": ["./src"],
-  "compileOnSave": false
+  "compileOnSave": false,
 }
