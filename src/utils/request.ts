@@ -26,7 +26,9 @@ instance.interceptors.request.use(
     const token = Taro.getStorageSync('token')
     // eslint-disable-next-line no-param-reassign
     config.headers = {
-      Authorization: token.authorization || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50Ijoib1R2eFh4TUlGRnhkM1BQOU44Qjd2YzV0bHBXQSIsInVpZCI6NjgzLCJjcmVhdGVUaW1lIjoxNjY0MzUyNjU5LCJjbGllbnRJcCI6IjEyNy4wLjAuMSIsImV4dGVuZFRva2VuIjoiNjFfNXFyaTBFUWlqeDFsVU5PaExBRW9TR2h5TkxCZlBjU0JVM1lKbW1UMzRJUU5mRzhydlBkVWRPV084RVkyUl82UW1lQUhRZEJmczRHQlBGcnU3eTdmYVRIQkdhS1dQZGNqSm05c3lwYzAyVnMiLCJhcmVhSWRzIjpbMjNdfQ.13xTl3IFys6TamGxBn64zFDKsDBpWZt8gsZGe_rQQwM.1664352659879',
+      Authorization:
+        token.authorization ||
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50Ijoib1R2eFh4TUlGRnhkM1BQOU44Qjd2YzV0bHBXQSIsInVpZCI6NjgzLCJjcmVhdGVUaW1lIjoxNjY0MzUyNjU5LCJjbGllbnRJcCI6IjEyNy4wLjAuMSIsImV4dGVuZFRva2VuIjoiNjFfNXFyaTBFUWlqeDFsVU5PaExBRW9TR2h5TkxCZlBjU0JVM1lKbW1UMzRJUU5mRzhydlBkVWRPV084RVkyUl82UW1lQUhRZEJmczRHQlBGcnU3eTdmYVRIQkdhS1dQZGNqSm05c3lwYzAyVnMiLCJhcmVhSWRzIjpbMjNdfQ.13xTl3IFys6TamGxBn64zFDKsDBpWZt8gsZGe_rQQwM.1664352659879',
       'Content-Type': 'application/json',
       ...config.headers
     }
@@ -38,12 +40,12 @@ instance.interceptors.request.use(
 )
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log(response, 'response');
+    console.log(response, 'response')
 
     return response
   },
   (err: AxiosError) => {
-    console.log(err, 'err');
+    console.log(err, 'err')
 
     return Promise.reject(err)
   }
@@ -70,13 +72,13 @@ const request = (options: AxiosRequestConfig = {}) => {
   // Taro.showLoading({
   //   title: '加载中...'
   // })
-  console.log(options, "options");
+  console.log(options, 'options')
 
   Taro.showNavigationBarLoading()
   return new Promise<ApiResult>((resolve, reject) => {
     instance(options)
       .then((response: AxiosResponse) => {
-        console.log(response, "嘻嘻嘻");
+        console.log(response, '嘻嘻嘻')
 
         if (response?.status === 200 && response?.data?.code === 200) {
           return resolve(response.data)
@@ -102,7 +104,7 @@ const request = (options: AxiosRequestConfig = {}) => {
         return reject(response)
       })
       .catch((result) => {
-        console.log(result, "哈哈哈");
+        console.log(result, '哈哈哈')
 
         if (result?.status === 200 && result?.data?.code === -1) {
           /// /重新登陆 result?.data?.code === -1 ||

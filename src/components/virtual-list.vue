@@ -1,64 +1,70 @@
 <template>
-    <div class="demo">
-        <h2>基础用法</h2>
-        <nut-cell>
-            <nut-list :height="50" :listData="state.count" @scroll-bottom="handleScroll">
-                <slot></slot>
-            </nut-list>
-        </nut-cell>
-    </div>
+  <ul class="infiniteUl" id="refreshScroll">
+    <nut-infiniteloading
+      pull-icon="more-x"
+      container-id="refreshScroll"
+      :use-window="false"
+      :is-open-refresh="true"
+      :has-more="refreshHasMore"
+      @load-more="refreshLoadMore"
+      @refresh="refresh"
+    >
+      <slot></slot>
+    </nut-infiniteloading>
+  </ul>
 </template>
-<script lang="ts" setup>
-import { onMounted, reactive, toRefs } from 'vue';
-import { usePullDownRefresh } from '@tarojs/taro'
-const state = reactive({
-    count: new Array(100).fill(0)
-});
 
-const handleScroll = () => {
-    let arr = new Array(100).fill(0);
-    const len = state.count.length;
-    state.count = state.count.concat(arr.map((item: number, index: number) => len + index + 1));
-};
-usePullDownRefresh(() => {
-    console.log('onPullDownRefresh')
-});
-onMounted(() => {
-    // console.log(state.count, "急啊急啊就");
+<script setup lang="ts">
+  import { ref, reactive, onMounted, toRefs } from 'vue'
 
-    state.count = state.count.map((item: number, index: number) => index + 1);
-})
+  const refreshHasMore = ref(true)
+  const state = reactive({
+    refreshList: [] as any
+  })
+  const refreshLoadMore = (done: Function) => {
+    setTimeout(() => {
+      const curLen = state.refreshList.length
+      for (let i = curLen; i < curLen + 10; i++) {
+        state.refreshList.push(`${i}`)
+      }
+      if (state.refreshList.length > 30) refreshHasMore.value = false
+      done()
+    }, 500)
+  }
 
-
+  const refresh = (done: Function) => {
+    setTimeout(() => {
+      //   Toast('刷新成功')
+      console.log('刷新成功')
+      setTimeout(() => {
+        done()
+      }, 100)
+    }, 1000)
+  }
+  const init = () => {
+    for (let i = 0; i < 10; i++) {
+      state.refreshList.push(`${i}`)
+    }
+  }
+  onMounted(() => {
+    init()
+  })
 </script>
-<style lang="scss">
-body {
-    width: 100%;
-    height: 100vh;
-}
 
-#app {
-    width: 100%;
+<style>
+  .infiniteUl {
     height: 100%;
-}
-
-.demo {
-    height: 100%;
-
-    .nut-cell {
-        height: 100%;
-    }
-
-    .list-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 50px;
-        margin-bottom: 10px;
-        background-color: #f4a8b6;
-        border-radius: 10px;
-    }
-}
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #eee;
+  }
+  .infiniteLi {
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba(100, 100, 100, 1);
+    text-align: center;
+  }
 </style>
-  

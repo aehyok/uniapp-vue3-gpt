@@ -1,7 +1,9 @@
 <template>
   <div class="demo">
     <vitrual-list>
-      <div @click="aaaa"> 华盛顿还是盗版 </div>
+      <div v-for="(item, index) in state.count" :key="index" class="list-item">
+        {{ item.name }}
+      </div>
     </vitrual-list>
   </div>
 </template>
@@ -15,24 +17,33 @@
     count: new Array(100).fill(0)
   })
 
+  const pageModel = reactive({
+    page: 1,
+    limit: 10
+  })
+
   //   const handleScroll = () => {
   //     let arr = new Array(100).fill(0)
   //     const len = state.count.length
   //     state.count = state.count.concat(arr.map((item: number, index: number) => len + index + 1))
   //   }
-  const aaaa = () => {
+  const init = () => {
     // getVillageCount();
     getAreaList({
-      page: 1,
-      limit: 10,
+      page: pageModel.page,
+      limit: pageModel.limit,
       level: 5
+    }).then((res: any) => {
+      if (res?.code === 200) {
+        state.count = res.data.docs
+      }
     })
   }
   usePullDownRefresh(() => {
     console.log('onPullDownRefresh')
   })
   onMounted(() => {
-    state.count = state.count.map((item: number, index: number) => index + 1)
+    init()
   })
 </script>
 <style lang="scss">
@@ -58,7 +69,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 50px;
+      height: 100px;
       margin-bottom: 10px;
       background-color: #f4a8b6;
       border-radius: 10px;
