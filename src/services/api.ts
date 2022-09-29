@@ -1,4 +1,4 @@
-// import request from '@utils/request'
+import request from '@utils/request'
 
 // const testUrl = 'https://dvs-dev.sunlight-tech.com/api/sso/auth/applet/login'
 // export const getProvince = (code) => {
@@ -12,18 +12,18 @@
 // }
 
 // //  首页查询村/人口/党员合计
-// export const getVillageCount = () => {
-//   return request({
-//     url: `/api/basic/wechat/area/getVillageCount`,
-//     method: 'GET'
-//   })
-// }
+export const getVillageCount = () => {
+  return request({
+    url: `/api/basic/wechat/area/getVillageCount`,
+    method: 'GET'
+  })
+}
 
 // //  首页查询村/人口/党员合计
-// export const getAreaList = (data) => {
-//   return request({
-//     url: `/api/basic/wechat/area/getAreaList`,
-//     method: 'post',
-//     data
-//   })
-// }
+export const getAreaList = (data: any) => {
+  return request({
+    url: `https://dvs-dev.sunlight-tech.com/api/basic/wechat/area/getAreaList`,
+    method: 'post',
+    data
+  })
+}

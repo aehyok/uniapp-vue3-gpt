@@ -17,13 +17,15 @@
 // }
 
 // //  获取设施列表
-// export const CleanCollectivePropertieList = (data) => {
-//   return request({
-//     url: `/api/village/wechat/clean/CleanCollectivePropertieList`,
-//     method: 'post',
-//     data
-//   })
-// }
+export const cleanCollectivePropertieList = (data: any) => {
+    console.log('request', "gga");
+
+    // return request({
+    //     url: `/api/village/wechat/clean/CleanCollectivePropertieList`,
+    //     method: 'post',
+    //     data
+    // })
+}
 
 // //  获取设施详情
 // export const CleanCollectivePropertyDetail = (data) => {
