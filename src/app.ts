@@ -91,6 +91,7 @@ import {
   Card,
   Table
 } from '@nutui/nutui-taro'
+import { autoComponentRegister } from '@/utils/auto-component-register'
 
 import './app.scss'
 
@@ -198,5 +199,7 @@ const nutuiComponents = [
 nutuiComponents.forEach((item) => {
   App.use(item)
 })
+
+autoComponentRegister(App)
 
 export default App
