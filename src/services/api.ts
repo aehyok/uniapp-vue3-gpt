@@ -1,4 +1,4 @@
-import request from '@utils/request'
+import request from '@/utils/request'
 
 // const testUrl = 'https://dvs-dev.sunlight-tech.com/api/sso/auth/applet/login'
 // export const getProvince = (code) => {

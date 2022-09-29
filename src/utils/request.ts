@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'taro-axios'
 import Taro from '@tarojs/taro'
-import domain from './domain'
+// import domain from './domain'
 // import useRouter from '@/router'
 
 // import { useRouter } from 'vue-router'
@@ -22,7 +22,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     console.log(config, 'config')
-    config.url = domain + config.url
+    // config.url = config.url
     const token = Taro.getStorageSync('token')
     // eslint-disable-next-line no-param-reassign
     config.headers = {
