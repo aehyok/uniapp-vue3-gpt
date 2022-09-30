@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: '首页',
-  enablePullDownRefresh: true
+  navigationBarTitleText: '首页'
+  // enablePullDownRefresh: true
 })
