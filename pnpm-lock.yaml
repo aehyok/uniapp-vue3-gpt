@@ -5,7 +5,7 @@ specifiers:
   '@babel/runtime': ^7.7.7
   '@commitlint/cli': ^17.0.3
   '@commitlint/config-conventional': ^17.0.3
-  '@nutui/nutui-taro': ^3.1.8
+  '@nutui/nutui-taro': 3.2.3
   '@tarojs/cli': 3.5.6
   '@tarojs/components': 3.5.6
   '@tarojs/helper': 3.5.6
@@ -23,7 +23,6 @@ specifiers:
   '@tarojs/taro': 3.5.6
   '@tarojs/taro-h5': 3.5.6
   '@tarojs/webpack5-runner': 3.5.6
-  '@types/node': ^18.7.23
   '@types/webpack-env': ^1.13.6
   '@typescript-eslint/eslint-plugin': ^5.20.0
   '@typescript-eslint/parser': ^5.20.0
@@ -54,7 +53,7 @@ specifiers:
 
 dependencies:
   '@babel/runtime': 7.19.0
-  '@nutui/nutui-taro': 3.2.2_vue@3.2.39
+  '@nutui/nutui-taro': 3.2.3_vue@3.2.39
   '@tarojs/components': 3.5.6_vue@3.2.39
   '@tarojs/helper': 3.5.6
   '@tarojs/plugin-framework-vue3': 3.5.6_vue@3.2.39
@@ -79,7 +78,6 @@ devDependencies:
   '@commitlint/config-conventional': 17.1.0
   '@tarojs/cli': 3.5.6_vue@3.2.39
   '@tarojs/webpack5-runner': 3.5.6_dfk67xq4wk5lg4hhl4tnpr4kdm
-  '@types/node': 18.7.23
   '@types/webpack-env': 1.18.0
   '@typescript-eslint/eslint-plugin': 5.38.1_pxq34cqhst7hqe7u3jqxjm55vi
   '@typescript-eslint/parser': 5.38.1_kxc7c6p4kubyharjstrc2a3itq
@@ -1787,8 +1785,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@nutui/nutui-taro/3.2.2_vue@3.2.39:
-    resolution: {integrity: sha512-awMPRcsMrYc/5jFkesSQi9gLALxJe3g5uTzGrpvZqd5kO4uQXGhsPkeFu7ld4QImmrcvqA0Y8Ms+ckVByMoU9g==}
+  /@nutui/nutui-taro/3.2.3_vue@3.2.39:
+    resolution: {integrity: sha512-FnqwFRgKNPbr1dOfxVMhc0wq14WBrrDxDpWRWXvRRLWskwTRq8MPxcazKYJcvgL1fjU2gaboWKHjEKaNH6sf6A==}
     dependencies:
       sass: 1.55.0
       vscode: 1.1.37
@@ -1899,6 +1897,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -1907,6 +1906,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -1915,6 +1915,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -1923,6 +1924,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -2940,14 +2942,12 @@ packages:
     resolution: {integrity: sha512-vlaYX2a3qMhIZfrw3Mtfd+BuU+TZmvDrPMa+6lpfzS9k/LnGxkSuf0fhkP0rMGfiOHPtyKoU9OJJJFGm92beVQ==}
     dependencies:
       '@vue/shared': 3.2.39
-    dev: false
 
   /@vue/runtime-core/3.2.39:
     resolution: {integrity: sha512-xKH5XP57JW5JW+8ZG1khBbuLakINTgPuINKL01hStWLTTGFOrM49UfCFXBcFvWmSbci3gmJyLl2EAzCaZWsx8g==}
     dependencies:
       '@vue/reactivity': 3.2.39
       '@vue/shared': 3.2.39
-    dev: false
 
   /@vue/runtime-dom/3.2.39:
     resolution: {integrity: sha512-4G9AEJP+sLhsqf5wXcyKVWQKUhI+iWfy0hWQgea+CpaTD7BR0KdQzvoQdZhwCY6B3oleSyNLkLAQwm0ya/wNoA==}
@@ -2955,7 +2955,6 @@ packages:
       '@vue/runtime-core': 3.2.39
       '@vue/shared': 3.2.39
       csstype: 2.6.21
-    dev: false
 
   /@vue/server-renderer/3.2.39_vue@3.2.39:
     resolution: {integrity: sha512-1yn9u2YBQWIgytFMjz4f/t0j43awKytTGVptfd3FtBk76t1pd8mxbek0G/DrnjJhd2V7mSTb5qgnxMYt8Z5iSQ==}
@@ -2965,7 +2964,6 @@ packages:
       '@vue/compiler-ssr': 3.2.39
       '@vue/shared': 3.2.39
       vue: 3.2.39
-    dev: false
 
   /@vue/shared/3.2.39:
     resolution: {integrity: sha512-D3dl2ZB9qE6mTuWPk9RlhDeP1dgNRUKC3NJxji74A4yL8M2MwlhLKUC/49WHjrNzSPug58fWx/yFbaTzGAQSBw==}
@@ -3803,8 +3801,6 @@ packages:
       babel-register: 6.26.0
       babylon: 6.18.0
       require-from-string: 2.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /babel-plugin-syntax-class-properties/6.13.0:
@@ -3916,7 +3912,7 @@ packages:
       babel-plugin-transform-react-jsx-to-rn-stylesheet: 3.5.6
       babel-plugin-transform-taroapi: 3.5.6
       core-js: 3.25.3
-      metro-react-native-babel-preset: 0.70.3
+      metro-react-native-babel-preset: 0.70.3_@babel+core@7.19.1
     transitivePeerDependencies:
       - '@types/react'
       - '@types/webpack'
@@ -4921,8 +4917,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      is-text-path: 1.0.1
       JSONStream: 1.3.5
+      is-text-path: 1.0.1
       lodash: 4.17.21
       meow: 8.1.2
       split2: 3.2.2
@@ -5335,7 +5331,6 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
-    dev: false
 
   /cuint/0.2.2:
     resolution: {integrity: sha512-d4ZVpCW31eWwCMe1YT3ur7mUDnTXbgwyzaL320DrcRT45rfjYxkt5QWLrmOJ+/UEAI2+fQgKe/fCjR8l4TpRgw==}
@@ -9319,6 +9314,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -9328,6 +9324,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -9337,6 +9334,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -9346,6 +9344,7 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -9851,8 +9850,10 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /metro-react-native-babel-preset/0.70.3:
+  /metro-react-native-babel-preset/0.70.3_@babel+core@7.19.1:
     resolution: {integrity: sha512-4Nxc1zEiHEu+GTdEMEsHnRgfaBkg8f/Td3+FcQ8NTSvs+xL3LBrQy6N07idWSQZHIdGFf+tTHvRfSIWLD8u8Tg==}
+    peerDependencies:
+      '@babel/core': '*'
     dependencies:
       '@babel/core': 7.19.1
       '@babel/plugin-proposal-async-generator-functions': 7.19.1_@babel+core@7.19.1
@@ -12462,6 +12463,7 @@ packages:
       chokidar: 3.5.3
       immutable: 4.1.0
       source-map-js: 1.0.2
+    dev: true
 
   /sass/1.55.0:
     resolution: {integrity: sha512-Pk+PMy7OGLs9WaxZGJMn7S96dvlyVBwwtToX895WmCpAOr5YiJYEUJfiJidMuKb613z2xNWcXCHEuOvjZbqC6A==}
@@ -12471,7 +12473,6 @@ packages:
       chokidar: 3.5.3
       immutable: 4.1.0
       source-map-js: 1.0.2
-    dev: false
 
   /sax/1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
@@ -12532,7 +12533,7 @@ packages:
       loglevel: 1.8.0
       loglevel-plugin-prefix: 0.8.4
       pretty-bytes: 5.6.0
-      sass: 1.50.0
+      sass: 1.55.0
       tslib: 1.14.1
 
   /seek-bzip/1.0.6:
@@ -14338,7 +14339,6 @@ packages:
       '@vue/runtime-dom': 3.2.39
       '@vue/server-renderer': 3.2.39_vue@3.2.39
       '@vue/shared': 3.2.39
-    dev: false
 
   /w3c-hr-time/1.0.2:
     resolution: {integrity: sha512-z8P5DvDNjKDoFIHK7q8r8lackT6l+jo/Ye3HOle7l9nICP9lf1Ci25fy9vHd0JOWewkIFzXIEig3TdKT7JQ5fQ==}

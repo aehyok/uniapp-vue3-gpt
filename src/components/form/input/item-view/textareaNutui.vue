@@ -1,4 +1,3 @@
-<!--简单文本框-->
 <template>
   <nut-form-item
     :label="column.title + '：'"
@@ -7,27 +6,19 @@
     :rules="rules"
   >
     <nut-input
+      type="textarea"
       v-model="value"
       :placeholder="placeholder"
       :max-length="column.maxlength"
       :readonly="column.readonly"
-      :input-align="column.inputAlign ?? 'right'"
-      :error-message-align="column.inputAlign ?? 'right'"
+      :input-align="column.inputAlign ?? 'left'"
+      :error-message-align="column.inputAlign ?? 'left'"
+      :rows="rows"
     >
-      <template #button v-if="column.rightIcon || column.append">
-        <div class="append-class">
-          <span v-if="column.append">{{ column.append }}</span>
-          <img
-            v-if="column.rightIcon"
-            :src="column.rightIcon"
-            style="width: 20px; height: 20px; vertical-align: -25%"
-            alt=""
-          />
-        </div>
-      </template>
     </nut-input>
   </nut-form-item>
 </template>
+
 <script setup>
   import { computed, ref } from 'vue'
 
@@ -38,17 +29,20 @@
       default: () => {}
     },
     data: {
-      type: [Number, String],
+      type: String,
       default: ''
+    },
+    labelWidth: {
+      type: String,
+      default: '7em'
     }
   })
   const { column } = props
-  console.log(column, 'update:data')
-  const required = ref(false)
-  required.value = column.required
-
+  const rows = column.rows > 0 ? column.rows : 3
   const rules = ref([])
   const placeholder = column.placeholder ? column.placeholder : `请输入${column.title}`
+  const required = ref(false)
+  required.value = column.required
 
   if (required.value) {
     rules.value = [
@@ -66,35 +60,14 @@
 
     rules.value = [...rules.value, ...column.rules]
   }
-  console.log(rules.value, 'column.rules-----------')
+
   const value = computed({
     get() {
       return props.data
     },
     set(val) {
+      console.log('text----------area', val)
       emit('update:data', val)
     }
   })
 </script>
-<style lang="scss">
-  .nut-form-item__body__tips {
-    font-size: 11px;
-  }
-
-  .nut-input.nut-input-border {
-    border-bottom: 0;
-  }
-  .nut-input {
-    padding: 0px;
-  }
-  .input-text {
-    color: #000;
-  }
-  .nut-form-item__label required {
-    position: relative;
-  }
-  .nut-form-item__label.required::before {
-    position: absolute;
-    left: 6px;
-  }
-</style>

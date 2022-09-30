@@ -6,29 +6,21 @@
     :required="column.required"
     :rules="rules"
   >
-    <nut-input
-      v-model="value"
-      :placeholder="placeholder"
-      :max-length="column.maxlength"
-      :readonly="column.readonly"
-      :input-align="column.inputAlign ?? 'right'"
-      :error-message-align="column.inputAlign ?? 'right'"
-    >
-      <template #button v-if="column.rightIcon || column.append">
-        <div class="append-class">
-          <span v-if="column.append">{{ column.append }}</span>
-          <img
-            v-if="column.rightIcon"
-            :src="column.rightIcon"
-            style="width: 20px; height: 20px; vertical-align: -25%"
-            alt=""
-          />
-        </div>
-      </template>
-    </nut-input>
+    <nut-radiogroup v-model="value" direction="horizontal">
+      <nut-radio
+        shape="round"
+        icon-name="checklist"
+        icon-active-name="checklist"
+        :label="item.code"
+        @click="dyDeselect(item.code)"
+        v-for="item in columns"
+        :key="item.code"
+        >{{ item.name }}</nut-radio
+      >
+    </nut-radiogroup>
   </nut-form-item>
 </template>
-<script setup>
+<script setup lang="ts">
   import { computed, ref } from 'vue'
 
   const emit = defineEmits(['update:data'])
@@ -47,7 +39,7 @@
   const required = ref(false)
   required.value = column.required
 
-  const rules = ref([])
+  const rules: any = ref([])
   const placeholder = column.placeholder ? column.placeholder : `请输入${column.title}`
 
   if (required.value) {
@@ -66,6 +58,11 @@
 
     rules.value = [...rules.value, ...column.rules]
   }
+
+  let columns: any = ref([])
+  if (column && column.dictionary && column.dictionary instanceof Array) {
+    columns.value = column.dictionary
+  }
   console.log(rules.value, 'column.rules-----------')
   const value = computed({
     get() {
@@ -75,6 +72,10 @@
       emit('update:data', val)
     }
   })
+
+  const dyDeselect = (item: any) => {
+    console.log(item, 'item.dictionary-----------')
+  }
 </script>
 <style lang="scss">
   .nut-form-item__body__tips {

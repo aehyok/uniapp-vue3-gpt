@@ -1,20 +1,15 @@
 <template>
   <div class="main-home">
-    <nut-form :model-value="dynamicForm.state" ref="dynamicRefForm">
-      <nut-form-item
-        label="姓名"
-        prop="name"
-        required
-        :rules="[{ required: true, message: '请填写1姓名' }]"
-      >
-        <nut-input v-model="dynamicForm.state.name" placeholder="请输入姓名"></nut-input>
-      </nut-form-item>
+    <nut-navbar title="详情"> </nut-navbar>
+    <nut-form
+      :model-value="state.form"
+      ref="dynamicRefForm"
+      :rules="{
+        houseName: [{ required: true, message: '请输入你好呀' }]
+      }"
+    >
       <SlForm :columnList="state.formListItem" :formData="state.form"></SlForm>
-      <nut-button
-        type="primary"
-        style="margin-right: 10px"
-        size="small"
-        @click="dynamicForm.methods.submit"
+      <nut-button type="default" style="margin-right: 10px" @click="dynamicForm.methods.submit"
         >提交</nut-button
       >
     </nut-form>
@@ -29,8 +24,8 @@
       SlForm
     },
     setup() {
+      const rules = [{ required: true, message: '请填写1姓名' }]
       const dynamicRefForm = ref<any>(null)
-
       const state = reactive({
         formListItem: [
           {
@@ -42,6 +37,7 @@
             name: 'houseName1',
             type: 'text',
             title: '门牌标签1',
+            maxlength: 10,
             required: true
           },
           {
@@ -49,12 +45,38 @@
             type: 'text',
             title: '门牌标签2',
             readonly: true
+          },
+          {
+            name: 'houseName3',
+            type: 'textarea',
+            title: '门牌标签3'
+          },
+          {
+            name: 'houseName4',
+            type: 'radio',
+            title: '门牌标签4',
+            dictionary: [
+              {
+                code: 1,
+                name: '11'
+              },
+              {
+                code: 2,
+                name: '12'
+              },
+              {
+                code: 3,
+                name: '13'
+              }
+            ]
           }
         ],
         form: {
           houseName: '1',
-          houseName1: '2',
-          houseName2: '3'
+          houseName1: '',
+          houseName2: '3',
+          houseName3: '',
+          houseName4: ''
         }
       })
       const dynamicForm = {
@@ -69,8 +91,10 @@
         methods: {
           submit() {
             dynamicRefForm.value.validate().then(({ valid, errors }: any) => {
+              console.log(valid, errors)
+
               if (valid) {
-                console.log('success', dynamicForm)
+                console.log('success', state.form)
               } else {
                 console.log('error submit!!', errors)
               }
@@ -81,7 +105,8 @@
       return {
         dynamicForm,
         dynamicRefForm,
-        state
+        state,
+        rules
       }
     }
   }
