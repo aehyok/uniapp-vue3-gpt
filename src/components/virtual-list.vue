@@ -2,23 +2,21 @@
   <view class="container aaaa">
     <view class="page-body">
       <view class="page-section">
-        <!-- <view class="page-section-title">
-          <text>Vertical Scroll - 纵向滚动</text>
-        </view> -->
         <view class="page-section-spacing">
           <scroll-view
             :scroll-y="true"
-            style="height: 300px"
+            style="height: 100vh"
             @scrolltoupper="upper"
             @scrolltolower="lower"
             @scroll="scroll"
             :lowerThreshold="200"
             :scroll-into-view="state.toView"
             :scroll-top="state.scrollTop"
+            :scrollWithAnimation="true"
+            :refresherEnabled="true"
+            :refresherThreshold="45"
           >
-            <view id="demo1" class="scroll-view-item demo-text-1">1</view>
-            <view id="demo2" class="scroll-view-item demo-text-2">2</view>
-            <view id="demo3" class="scroll-view-item demo-text-3">3</view>
+            <slot></slot>
           </scroll-view>
         </view>
       </view>
@@ -53,10 +51,10 @@
   } */
   :deep(.hydrated),
   :deep(.container) {
-    height: 300px !important;
+    height: 100vh !important;
   }
   .page-section-spacing {
-    margin-top: 60rpx;
+    /* margin-top: 60rpx; */
   }
   .scroll-view_H {
     white-space: nowrap;
