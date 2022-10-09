@@ -1,70 +1,82 @@
 <template>
-  <ul class="infiniteUl" id="refreshScroll">
-    <nut-infiniteloading
-      pull-icon="more-x"
-      container-id="refreshScroll"
-      :use-window="false"
-      :is-open-refresh="true"
-      :has-more="refreshHasMore"
-      @load-more="refreshLoadMore"
-      @refresh="refresh"
-    >
-      <slot></slot>
-    </nut-infiniteloading>
-  </ul>
+  <view class="container aaaa">
+    <view class="page-body">
+      <view class="page-section">
+        <!-- <view class="page-section-title">
+          <text>Vertical Scroll - 纵向滚动</text>
+        </view> -->
+        <view class="page-section-spacing">
+          <scroll-view
+            :scroll-y="true"
+            style="height: 300px"
+            @scrolltoupper="upper"
+            @scrolltolower="lower"
+            @scroll="scroll"
+            :lowerThreshold="200"
+            :scroll-into-view="state.toView"
+            :scroll-top="state.scrollTop"
+          >
+            <view id="demo1" class="scroll-view-item demo-text-1">1</view>
+            <view id="demo2" class="scroll-view-item demo-text-2">2</view>
+            <view id="demo3" class="scroll-view-item demo-text-3">3</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
 
-<script setup lang="ts">
-  import { ref, reactive, onMounted, toRefs } from 'vue'
+<script setup>
+  import { reactive } from 'vue'
 
-  const refreshHasMore = ref(true)
   const state = reactive({
-    refreshList: [] as any
+    scrollTop: 0,
+    toView: 'demo2'
   })
-  const refreshLoadMore = (done: Function) => {
-    setTimeout(() => {
-      const curLen = state.refreshList.length
-      for (let i = curLen; i < curLen + 10; i++) {
-        state.refreshList.push(`${i}`)
-      }
-      if (state.refreshList.length > 30) refreshHasMore.value = false
-      done()
-    }, 500)
+
+  const upper = (e) => {
+    console.log('upper:', e)
   }
 
-  const refresh = (done: Function) => {
-    setTimeout(() => {
-      //   Toast('刷新成功')
-      console.log('刷新成功')
-      setTimeout(() => {
-        done()
-      }, 100)
-    }, 1000)
+  const lower = (e) => {
+    console.log('lower:', e)
   }
-  const init = () => {
-    for (let i = 0; i < 10; i++) {
-      state.refreshList.push(`${i}`)
-    }
+
+  const scroll = (e) => {
+    // console.log('scroll:', e)
   }
-  onMounted(() => {
-    init()
-  })
 </script>
 
 <style>
-  .infiniteUl {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: #eee;
+  /* { */
+  /* height: 300px !important;
+  } */
+  :deep(.hydrated),
+  :deep(.container) {
+    height: 300px !important;
   }
-  .infiniteLi {
-    margin-top: 10px;
-    font-size: 14px;
-    color: rgba(100, 100, 100, 1);
-    text-align: center;
+  .page-section-spacing {
+    margin-top: 60rpx;
+  }
+  .scroll-view_H {
+    white-space: nowrap;
+  }
+  .scroll-view-item {
+    height: 300rpx;
+  }
+  .scroll-view-item_H {
+    display: inline-block;
+    width: 100%;
+    height: 300rpx;
+  }
+
+  .demo-text-1 {
+    background: #ccc;
+  }
+  .demo-text-2 {
+    background: #999;
+  }
+  .demo-text-3 {
+    background: #666;
   }
 </style>

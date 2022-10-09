@@ -1,78 +1,78 @@
 <template>
-  <div class="demo">
-    <vitrual-list>
-      <div v-for="(item, index) in state.count" :key="index" class="list-item">
-        {{ item.name }}
-      </div>
-    </vitrual-list>
-  </div>
+  <view class="container aaaa">
+    <view class="page-body">
+      <view class="page-section">
+        <!-- <view class="page-section-title">
+            <text>Vertical Scroll - 纵向滚动</text>
+          </view> -->
+        <view class="page-section-spacing">
+          <scroll-view
+            :scroll-y="true"
+            style="height: 300px"
+            @scrolltoupper="upper"
+            @scrolltolower="lower"
+            @scroll="scroll"
+            :lowerThreshold="200"
+            :scroll-into-view="state.toView"
+            :scroll-top="state.scrollTop"
+          >
+            <view id="demo1" class="scroll-view-item demo-text-1">1</view>
+            <view id="demo2" class="scroll-view-item demo-text-2">2</view>
+            <view id="demo3" class="scroll-view-item demo-text-3">3</view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
 </template>
-<script lang="ts" setup>
-  import { onMounted, reactive } from 'vue'
-  import { usePullDownRefresh } from '@tarojs/taro'
-  import vitrualList from '@/components/virtual-list.vue'
-  import { getAreaList } from '@/services/api'
+
+<script setup>
+  import { reactive } from 'vue'
 
   const state = reactive({
-    count: new Array(100).fill(0)
+    scrollTop: 0,
+    toView: 'demo2'
   })
 
-  const pageModel = reactive({
-    page: 1,
-    limit: 10
-  })
-
-  //   const handleScroll = () => {
-  //     let arr = new Array(100).fill(0)
-  //     const len = state.count.length
-  //     state.count = state.count.concat(arr.map((item: number, index: number) => len + index + 1))
-  //   }
-  const init = () => {
-    // getVillageCount();
-    getAreaList({
-      page: pageModel.page,
-      limit: pageModel.limit,
-      level: 5
-    }).then((res: any) => {
-      if (res?.code === 200) {
-        state.count = res.data.docs
-      }
-    })
+  const upper = (e) => {
+    console.log('upper:', e)
   }
-  usePullDownRefresh(() => {
-    console.log('onPullDownRefresh')
-  })
-  onMounted(() => {
-    init()
-  })
+
+  const lower = (e) => {
+    console.log('lower:', e)
+  }
+
+  const scroll = (e) => {
+    // console.log('scroll:', e)
+  }
 </script>
-<style lang="scss">
-  body {
+
+<style>
+  .aaaa {
+    height: 300px !important;
+  }
+  .page-section-spacing {
+    margin-top: 60rpx;
+  }
+  .scroll-view_H {
+    white-space: nowrap;
+  }
+  .scroll-view-item {
+    height: 300rpx;
+  }
+  .scroll-view-item_H {
+    display: inline-block;
     width: 100%;
-    height: 100vh;
+    height: 300rpx;
   }
 
-  #app {
-    width: 100%;
-    height: 100%;
+  .demo-text-1 {
+    background: #ccc;
   }
-
-  .demo {
-    height: 100%;
-
-    .nut-cell {
-      height: 100%;
-    }
-
-    .list-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100px;
-      margin-bottom: 10px;
-      background-color: #f4a8b6;
-      border-radius: 10px;
-    }
+  .demo-text-2 {
+    background: #999;
+  }
+  .demo-text-3 {
+    background: #666;
   }
 </style>
