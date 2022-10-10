@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <vitrual-list @getList="getList" v-model:pageModel="pageModel">
-      <div v-for="(item, index) in state.dataList" :key="index" class="list-item" @click="aaa">
+      <div v-for="(item, index) in state.dataList" :key="index" class="list-item" @click="jump">
         {{ item.messageName }}
       </div>
     </vitrual-list>
@@ -9,7 +9,7 @@
 </template>
 <script lang="ts" setup>
   import { onMounted, reactive } from 'vue'
-  import Taro, { usePullDownRefresh } from '@tarojs/taro'
+  import Taro from '@tarojs/taro'
   import vitrualList from '@/components/virtual-list.vue'
   import { getAreaList, getAreaLisst } from '@/services/api'
   import type { PageModel } from '@/types/list/index'
@@ -45,10 +45,8 @@
       }
     })
   }
-  usePullDownRefresh(() => {
-    console.log('onPullDownRefresh')
-  })
-  const aaa = () => {
+
+  const jump = () => {
     Taro.navigateTo({
       url: '/pages/index/index?id=1'
     })
@@ -58,16 +56,6 @@
   })
 </script>
 <style lang="scss">
-  body {
-    width: 100%;
-    height: 100vh;
-  }
-
-  #app {
-    width: 100%;
-    height: 100%;
-  }
-
   .demo {
     height: 100vh;
 
