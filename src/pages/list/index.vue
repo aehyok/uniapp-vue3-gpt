@@ -1,49 +1,60 @@
 <template>
   <div class="demo">
-    <vitrual-list>
-      <div v-for="(item, index) in state.count" :key="index" class="list-item">
-        {{ item.name }}
+    <vitrual-list @getList="getList" v-model:pageModel="pageModel">
+      <div v-for="(item, index) in state.dataList" :key="index" class="list-item" @click="aaa">
+        {{ item.messageName }}
       </div>
     </vitrual-list>
   </div>
 </template>
 <script lang="ts" setup>
   import { onMounted, reactive } from 'vue'
-  import { usePullDownRefresh } from '@tarojs/taro'
+  import Taro, { usePullDownRefresh } from '@tarojs/taro'
   import vitrualList from '@/components/virtual-list.vue'
-  import { getAreaList } from '@/services/api'
+  import { getAreaList, getAreaLisst } from '@/services/api'
+  import type { PageModel } from '@/types/list/index'
 
   const state = reactive({
-    count: new Array(100).fill(0)
+    dataList: [] as any
   })
 
-  const pageModel = reactive({
+  const pageModel = reactive<PageModel>({
     page: 1,
-    limit: 10
+    limit: 10,
+    total: 0,
+    isFinished: true
   })
 
-  //   const handleScroll = () => {
-  //     let arr = new Array(100).fill(0)
-  //     const len = state.count.length
-  //     state.count = state.count.concat(arr.map((item: number, index: number) => len + index + 1))
-  //   }
-  const init = () => {
-    // getVillageCount();
-    getAreaList({
+  const getList = () => {
+    getAreaLisst({
       page: pageModel.page,
       limit: pageModel.limit,
-      level: 5
+      keyword: ''
     }).then((res: any) => {
       if (res?.code === 200) {
-        state.count = res.data.docs
+        let rows = res.data.docs
+        if (rows.length === 0 || rows.length < pageModel.limit) {
+          pageModel.isFinished = false
+        }
+        if (pageModel.page === 1) {
+          state.dataList = rows
+        } else {
+          state.dataList = [...state.dataList, ...rows]
+        }
+        pageModel.total = res.data.total || -1
       }
     })
   }
   usePullDownRefresh(() => {
     console.log('onPullDownRefresh')
   })
+  const aaa = () => {
+    Taro.navigateTo({
+      url: '/pages/index/index?id=1'
+    })
+  }
   onMounted(() => {
-    init()
+    getList()
   })
 </script>
 <style lang="scss">

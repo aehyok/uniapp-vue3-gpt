@@ -6,6 +6,7 @@
     {{ msg }}
     <view class="btn">
       <nut-button type="primary" @click="handleClick('text', msg2, true)">进入表单</nut-button>
+      <nut-button type="primary" @click="back('text', msg2, true)">返回列表</nut-button>
     </view>
     <nut-toast :msg="msg" v-model:visible="show" :type="type" :cover="cover" />
   </view>
@@ -36,10 +37,17 @@
           url: '/pages/form/index'
         })
       }
+      const back = () => {
+        console.log('hhaha')
 
+        Taro.navigateBack({
+          delta: 1
+        })
+      }
       return {
         ...toRefs(state),
-        handleClick
+        handleClick,
+        back
       }
     }
   }

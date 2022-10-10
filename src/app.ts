@@ -24,7 +24,7 @@ import {
   CollapseItem,
   Drag,
   Dialog,
-  InfiniteLoading,
+  InfiniteLoading as InfiniteLoadingWechat,
   Notify,
   Range,
   Video,
@@ -34,7 +34,6 @@ import {
   Swiper,
   SwiperItem,
   Switch,
-  Toast,
   Progress,
   CircleProgress,
   NoticeBar,
@@ -91,10 +90,12 @@ import {
   Card,
   Table
 } from '@nutui/nutui-taro'
+import { InfiniteLoading as InfiniteLoadingH5, Toast } from '@nutui/nutui'
 import { autoComponentRegister } from '@/utils/auto-component-register'
-
 import './app.scss'
 
+const isH5 = process.env.TARO_ENV === 'h5'
+const InfiniteLoading = isH5 ? InfiniteLoadingH5 : InfiniteLoadingWechat
 const App = createApp({
   onShow(options: any) {
     console.log(options, 'onShow')

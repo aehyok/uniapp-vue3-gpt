@@ -20,9 +20,24 @@ export const getVillageCount = () => {
 }
 
 // //  首页查询村/人口/党员合计
-export const getAreaList = (data: any) => {
+export const getAreaLists = (data: any) => {
   return request({
     url: `https://dvs-dev.sunlight-tech.com/api/basic/wechat/area/getAreaList`,
+    method: 'post',
+    data
+  })
+}
+
+export const getAreaLisst = (data: any) => {
+  return request({
+    url: `https://dvs-dev.sunlight-tech.com/api/cons/app/infopublic/list`,
+    method: 'post',
+    data
+  })
+}
+export const getAreaList = (data: any) => {
+  return request({
+    url: `https://dvs-dev.sunlight-tech.com/api/ffp/app/matrix/EliminateNameAppList`,
     method: 'post',
     data
   })

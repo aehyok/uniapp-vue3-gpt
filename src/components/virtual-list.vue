@@ -1,64 +1,56 @@
 <template>
-  <ul class="infiniteUl" id="refreshScroll" style="height: 100vh">
-    <!-- container-id="refreshScroll" -->
+  <ul class="infiniteUl" id="refreshScroll" v-if="props.pageModel.total > -1">
     <nut-infiniteloading
-      pull-icon="JD"
-      :use-window="true"
+      pull-icon="loading"
+      load-icon="loading1"
+      :use-window="false"
       container-id="refreshScroll"
       :is-open-refresh="true"
-      :has-more="refreshHasMore"
+      :has-more="props.pageModel.isFinished"
       @load-more="refreshLoadMore"
-      :use-capture="true"
+      :use-capture="false"
       @refresh="refresh"
       @scroll-change="scrollChange"
     >
-      <li class="infiniteLi" v-for="(item, index) in refreshList" :key="index">{{ item }}</li>
+      <slot> </slot>
     </nut-infiniteloading>
   </ul>
-  >>>>>>> b2663c1de84a0779729786748f224f30b15828a2
+  <nut-empty description="无数据" v-else style="height: 100vh"></nut-empty>
 </template>
 
-<script>
-  import { ref, reactive, onMounted, toRefs } from 'vue'
+<script setup lang="ts">
+  import { PropType } from 'vue'
+  import { Toast } from '@nutui/nutui'
+  import type { PageModel } from '@/types/list/index'
 
-  export default {
-    setup() {
-      const refreshHasMore = ref(true)
-      const data = reactive({
-        refreshList: []
-      })
-      const refreshLoadMore = (done) => {
-        console.log('独自守着伤悲')
-        setTimeout(() => {
-          const curLen = data.refreshList.length
-          for (let i = curLen; i < curLen + 10; i++) {
-            data.refreshList.push(`${i}`)
-          }
-          if (data.refreshList.length > 30) refreshHasMore.value = false
-          done()
-        }, 500)
-      }
-
-      const refresh = (done) => {
-        setTimeout(() => {
-          // Toast.success('刷新成功')
-          done()
-        }, 1000)
-      }
-      const init = () => {
-        for (let i = 0; i < 9; i++) {
-          data.refreshList.push(`${i}`)
-        }
-      }
-
-      const scrollChange = (e) => {
-        console.log('高度监听', e)
-      }
-      onMounted(() => {
-        init()
-      })
-      return { refreshLoadMore, refreshHasMore, scrollChange, refresh, ...toRefs(data) }
+  const props = defineProps({
+    pageModel: {
+      type: Object as PropType<PageModel>,
+      default: () => {}
     }
+  })
+  const emits = defineEmits(['getList', 'update:pageModel'])
+
+  const refreshLoadMore = (done: any) => {
+    setTimeout(() => {
+      props.pageModel.page++
+      emits('getList')
+      done()
+    }, 500)
+  }
+
+  const refresh = (done: any) => {
+    setTimeout(() => {
+      props.pageModel.page = 1
+      props.pageModel.isFinished = true
+      emits('getList')
+      Toast.success('刷新成功')
+      done()
+    }, 1000)
+  }
+
+  const scrollChange = () => {
+    // console.log('高度监听', e)
   }
 </script>
 
