@@ -1,63 +1,49 @@
 <template>
-  <view class="index">
-    <view>
-      <img src="" alt="" />
-    </view>
-    {{ msg }}
-    <view class="btn">
-      <nut-button type="primary" @click="handleClick('text', msg2, true)">进入表单</nut-button>
-      <nut-button type="primary" @click="back('text', msg2, true)">返回列表</nut-button>
-    </view>
-    <!-- <nut-toast :msg="msg" v-model:visible="show" :type="type" :cover="cover" /> -->
+  <view class="container">
+    <uni-card is-full :is-shadow="false">
+      <text class="uni-h6">评分组件多用于商品评价打分、服务态度评价、用户满意度等场景。</text>
+    </uni-card>
+    <uni-section title="基本用法" type="line" padding>
+      <uni-rate v-model="rateValue" @change="onChange" />
+    </uni-section>
+    <uni-section title="单选" type="line">
+      <view class="uni-px-5 uni-pb-5">
+        <view class="text">单选选中：{{ JSON.stringify(radio1) }}</view>
+        <uni-data-checkbox v-model="radio1" :wrap="false" :localdata="sex"></uni-data-checkbox>
+      </view>
+    </uni-section>
+    <button @click="editRoster">编辑</button>
   </view>
 </template>
 
-<script>
-  import { reactive, toRefs } from 'vue'
-  import Taro from '@tarojs/taro'
-
-  export default {
-    name: 'Index',
-    components: {},
-    setup() {
-      const state = reactive({
-        msg: '欢迎使用 NutUI3.0 开发小程序',
-        msg2: '你成功了～',
-        type: 'text',
-        show: false,
-        cover: false
-      })
-
-      const handleClick = (type, msg, cover = false) => {
-        state.show = true
-        state.msg2 = msg
-        state.type = type
-        state.cover = cover
-        Taro.navigateTo({
-          url: '/pages/form/index'
-        })
-      }
-      const back = () => {
-        console.log('hhaha')
-
-        Taro.navigateBack({
-          delta: 1
-        })
-      }
-      return {
-        ...toRefs(state),
-        handleClick,
-        back
-      }
-    }
-  }
+<script setup>
+// const aaa =  ()  => {}
+let radio1 = 0;
+const sex = [
+  {
+    text: "男",
+    value: 0,
+  },
+  {
+    text: "男",
+    value: 1,
+  },
+  {
+    text: "男",
+    value: 2,
+  },
+];
+const editRoster = () => {
+  uni.navigateTo({
+    url: "/ffp-pages/roster/roster-detail",
+  });
+};
 </script>
-
-<style lang="scss">
-  .index {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-  }
+<style lang="scss" scoped>
+.sss {
+  height: 300px;
+  width: 100px;
+  background: #f2f2f2;
+  color: beige;
+}
 </style>

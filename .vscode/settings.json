@@ -1,7 +1,17 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "editor.formatOnSave": true,
-  "eslint.validate": ["javascript", "javascriptreact", "vue"]
+  // 保存时修复来自所有插件的所有可自动修复的ESlint错误
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+  // 应通过ESLint验证的语言数组
+  "eslint.validate": ["typescript", "vue", "html", "json"],
+  // 默认格式化插件选择
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // js格式化选择
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  // vue格式化选择
+  "[vue]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  // html格式化选择
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  // json格式化选择
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+  //  "json.format.enable": false
 }
