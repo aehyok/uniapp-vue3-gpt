@@ -1,0 +1,31 @@
+# 该文件用于统一不同编辑器和IDE的编码风格
+# https://editorconfig.org/
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+trim_trailing_whitespace = true
+
+[*.{less,scss}]
+indent_size = 2
+
+[*.vue]
+indent_size = 2
+
+[*.{cjs,mjs,js,jsx,ts,tsx}]
+indent_size = 2
+max_line_length = 80
+tab_width = 2
+
+# 在Markdown文档中，换行符前删除空格以确保语法准确
+[*.{md,markdown}]
+max_line_length = off
+trim_trailing_whitespace = false
+
+[{*.har,*.jsb2,*.jsb3,*.json,.babelrc,.eslintrc,.prettierrc,.stylelintrc,bowerrc,jest.config}]
+indent_size = 2

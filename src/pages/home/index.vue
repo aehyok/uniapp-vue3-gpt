@@ -40,43 +40,70 @@
       text="人生是由各种不同的变故、循环不已的痛苦和欢乐组成的。那种永远不变的蓝天只存在于心灵中，向现实的人生去要求未免是奢望。"
     />
     <view class="issue">
-      <uni-easyinput class="textarea" type="textarea" v-model="value" placeholder="请输入您的内容"></uni-easyinput>
+      <uni-easyinput class="textarea" type="textarea" v-model="value" placeholder="请输入您的问题"></uni-easyinput>
       <button @click="editRoster">获取答案</button>
     </view>
     <uni-section class="mb-10" title="智慧广场" type="line"></uni-section>
-    <uni-card title="求智慧的天使" sub-title="性别：未知" extra="查看详情" :thumbnail="avatar" @click="onClick">
-      <text class="uni-body">少年人用什么洁净他的行为呢？</text>
-    </uni-card>
-    <uni-card title="访客" sub-title="性别：未知" extra="查看详情" :thumbnail="avatar" @click="onClick">
-      <text class="uni-body">什么是极乐世界？人真的有来生吗？。</text>
-    </uni-card>
+    <template v-for="(item, index) in data" :key="index">
+      <uni-card
+        :title="item.title"
+        :sub-title="item.subTitle"
+        :extra="item.extra"
+        :border="true"
+        margin="10rpx"
+        :is-shadow="true"
+        thumbnail="https://web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
+        @click="onClick(item.id)"
+      >
+        <text class="uni-badyTitle">{{ item.badyTitle }}</text>
+        <view class="uni-body">{{ item.badyContent }}</view>
+        <view slot="actions" class="card-actions">
+          <view class="card-actions-item" @click="actionsClick('点赞')">
+            <uni-icons type="heart" size="18" color="#999"></uni-icons>
+            <text class="card-actions-item-text">点赞</text>
+          </view>
+          <view class="card-actions-item" @click="actionsClick('评论')">
+            <uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
+            <text class="card-actions-item-text">评论</text>
+          </view>
+        </view>
+      </uni-card>
+    </template>
   </view>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref } from "vue";
+import { homeData } from "@/configItem/index.js";
 let value = "";
 const indicatorDots = true;
 const autoplay = true;
 const interval = 2000;
 const duration = 800;
-let radio1 = 0;
-const sex = [
-  {
-    text: "男",
-    value: 0,
-  },
-  {
-    text: "男",
-    value: 1,
-  },
-  {
-    text: "男",
-    value: 2,
-  },
-];
+const data = ref(homeData);
 const editRoster = () => {
+  console.log(value, "aa");
+  if (!value) {
+    uni.showToast({
+      icon: "none",
+      title: "请输入您的问题",
+    });
+  } else {
+    data.value.push({
+      id: 5,
+      title: "小程序访客",
+      subTitle: "性别：男",
+      extra: "查看详情",
+      avatar: "https://web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png",
+      badyTitle: value,
+      badyContent: value,
+    });
+    value = "";
+  }
+};
+const onClick = (id: number) => {
   uni.navigateTo({
-    url: "/ffp-pages/roster/roster-detail",
+    url: `/pages/answer-detail/index?id=${id}`,
   });
 };
 </script>
@@ -125,5 +152,30 @@ const editRoster = () => {
     color: #ff8158;
     font-weight: 500;
   }
+}
+
+.container {
+  background: #fffaf6;
+}
+
+.uni-badyTitle {
+  display: block;
+  color: #baa06c;
+  margin: 10rpx 0;
+}
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  .card-actions-item {
+    margin: 10px 10px 10px 10px;
+  }
+}
+.uni-body {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 超出几行省略 */
+  overflow: hidden;
 }
 </style>

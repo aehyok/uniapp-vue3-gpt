@@ -17,13 +17,19 @@
       "style": {
         "navigationBarTitleText": "AI 智能"
       }
+    },
+    {
+      "path": "pages/answer-detail/index",
+      "style": {
+        "navigationBarTitleText": "问答详情"
+      }
     }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#fbe09d"
   },
   "tabBar": {
     "color": "#7A7E83",
