@@ -13,6 +13,12 @@
       }
     },
     {
+      "path": "pages/log/index",
+      "style": {
+        "navigationBarTitleText": "自动化"
+      }
+    },
+    {
       "path": "pages/mine/index",
       "style": {
         "navigationBarTitleText": "AI 智能"
@@ -40,6 +46,10 @@
       {
         "pagePath": "pages/home/index",
         "text": "智慧树"
+      },
+      {
+        "pagePath": "pages/log/index",
+        "text": "自动化"
       },
       {
         "pagePath": "pages/mine/index",
