@@ -14,4 +14,16 @@ export default defineConfig({
     ],
   },
   transpileDependencies: ["luch-request", "@dcloudio/uni-ui"],
+  server: {
+    port: 5173,
+    host: "0.0.0.0", // 可查看到局域网IP地址
+    // https: true, // 可开启https
+    proxy: {
+      "/so": {
+        target: "http://101.35.211.235:3001", // 代理接口
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/so/, ""),
+      },
+    },
+  },
 });

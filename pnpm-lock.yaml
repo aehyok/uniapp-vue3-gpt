@@ -43,12 +43,18 @@ dependencies:
   '@dcloudio/uni-ui':
     specifier: ^1.4.27
     version: 1.4.27
+  luch-request:
+    specifier: ^3.1.1
+    version: 3.1.1
   pinia:
     specifier: 2.0.14
     version: 2.0.14(typescript@4.9.4)(vue@3.2.45)
   vue:
     specifier: ^3.2.45
     version: 3.2.45
+  z-paging:
+    specifier: ^2.5.8
+    version: 2.5.8
 
 devDependencies:
   '@dcloudio/types':
@@ -1290,6 +1296,10 @@ packages:
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
+
+  /@dcloudio/types@2.6.12:
+    resolution: {integrity: sha512-mrCMwcINy1IFjU9VUqLeWBkj404yWs5paLDttBcA+eqUjanuUQbBcTVPqlrGgkyzLXDcV2oDDZRSNxNpXi4kMQ==}
+    dev: false
 
   /@dcloudio/types@3.3.2:
     resolution: {integrity: sha512-O+7M55RXqYJMCTh3MC86IGJvDPTR+v214yUeaoz1YUIHa2gJdgObs4RRwfAwZoLMtdoZ9J5BElZZqRy5oi+UTg==}
@@ -5534,6 +5544,12 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /luch-request@3.1.1:
+    resolution: {integrity: sha512-p7+mlcEtgRcd0OfXC4XZbyiwSr1XgCeqNT7LlVUjnk7InYl/8d5Rk7BUqAYNA2WRafI1wRIUQWRWZRpeUwWR0w==}
+    dependencies:
+      '@dcloudio/types': 2.6.12
+    dev: false
+
   /magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -7047,3 +7063,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /z-paging@2.5.8:
+    resolution: {integrity: sha512-g3FjnrcUTyRbsToh0vgLMCBh3jA/wDVMD3CrRP3FFR8xzTDpJDthmsCbbhYk4NeG610M6kR7CWDt72nhr3Zyhw==}
+    engines: {HBuilderX: ^3.0.7}
+    dev: false
