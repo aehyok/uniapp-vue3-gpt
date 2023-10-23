@@ -50,7 +50,10 @@ const projectClick = (project, index) => {
 };
 
 const searchClick = () => {
-  let url = `/so/api/v1/log/getListByVersion?version=${version.value}`;
+  let timestamp = Date.now();
+
+  const pre = process.env.NODE_ENV === "development" ? "/so" : "/so";
+  let url = `${pre}/api/v1/log/getListByVersion?version=${version.value}&timestamp=${timestamp}`;
   if (state.project) {
     url = `${url}&project=${state.project}`;
   }
