@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  course-ui:
+    image: nginx:latest
+    container_name: course-vue
+    ports:
+      - "3002:80"
+    volumes:
+      - ./dist:/usr/share/nginx/html/
+      - ./nginx/:/etc/nginx/conf.d/
