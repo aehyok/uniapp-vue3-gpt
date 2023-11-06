@@ -51,9 +51,9 @@ const projectClick = (project, index) => {
 
 const searchClick = () => {
   let timestamp = Date.now();
-
-  const pre = process.env.NODE_ENV === "development" ? "/so" : "/so";
-  let url = `${pre}/api/v1/log/getListByVersion?version=${version.value}&timestamp=${timestamp}`;
+  let apiUrl = "/";
+  const pre = process.env.NODE_ENV === "development" ? "/so/" : `${apiUrl}`;
+  let url = `${pre}api/v1/log/getListByVersion?version=${version.value}&timestamp=${timestamp}`;
   if (state.project) {
     url = `${url}&project=${state.project}`;
   }
