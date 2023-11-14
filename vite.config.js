@@ -21,7 +21,7 @@ export default defineConfig({
     // https: true, // 可开启https
     proxy: {
       "/so": {
-        target: "http://8.219.92.157:3001", // 代理接口
+        target: "http://dvs-px.sunlight-tech.com", // 代理接口
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/so/, ""),
       },

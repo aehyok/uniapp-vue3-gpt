@@ -25,10 +25,12 @@
     <view class="item">内容：{{ item.content }}</view>
     <view style="border-bottom: 1px solid red"></view>
   </view>
+  <view class="deploy-button">deploy</view>
 </template>
 <script setup>
 import Request from "luch-request";
 import { reactive } from "vue";
+import qs from "qs";
 import { useStorage } from "@vueuse/core";
 import { format } from "date-fns";
 const http = new Request();
@@ -53,10 +55,16 @@ const searchClick = () => {
   let timestamp = Date.now();
   let apiUrl = "/";
   const pre = process.env.NODE_ENV === "development" ? "/so/" : `${apiUrl}`;
-  let url = `${pre}api/v1/log/getListByVersion?version=${version.value}&timestamp=${timestamp}`;
+  const parames = {
+    version: version.value,
+    timestamp,
+  };
+  let url = `${pre}api/v1/log/getListByVersion`;
   if (state.project) {
-    url = `${url}&project=${state.project}`;
+    parames.project = state.project;
   }
+  console.log(qs.stringify(parames), "parames");
+  url = `${url}?${qs.stringify(parames)}`;
   http
     .get(url)
     .then((res) => {
@@ -94,5 +102,16 @@ button {
   background-color: #8f939c;
   border-radius: 6px;
   padding: 4px 12px;
+}
+
+.deploy-button {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  padding: 15px;
+  border-radius: 40%;
+  background-color: #18bc37;
+  color: white;
+  border-color: white;
 }
 </style>
