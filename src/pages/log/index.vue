@@ -25,23 +25,72 @@
     <view class="item">内容：{{ item.content }}</view>
     <view style="border-bottom: 1px solid red"></view>
   </view>
-  <view class="deploy-button">deploy</view>
+  <view class="deploy-button" @click="openDeploy">deploy</view>
+  <uni-popup ref="popup" type="bottom" background-color="#fff">
+    <div style="width: 100vw; height: 75vh">
+      <view style="display: flex; justify-content: space-between; align-items: center; padding: 10px">
+        <uni-easyinput
+          type="text"
+          v-model="state.cmdStr"
+          placeholder="请输入命令行"
+          style="margin-right: 5rpx"
+        ></uni-easyinput>
+        <button style="display: flex; justify-content: center; align-items: center" @click="deployClick('')">
+          执行
+        </button>
+      </view>
+      <view style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
+        <uni-tag
+          :text="item"
+          type="primary"
+          style="margin: 5px"
+          v-for="(item, index) in ['console', 'mp', 'mini']"
+          :key="index"
+          @click="deployClick(item)"
+        ></uni-tag
+      ></view>
+      <view style="margin: 50px; display: grid; grid-template-columns: repeat(3, 1fr)">
+        <uni-tag
+          :text="item"
+          type="success"
+          style="margin: 5px"
+          v-for="(item, index) in state.childList"
+          :key="index"
+          @click="deployClick(item)"
+        ></uni-tag>
+      </view>
+    </div>
+  </uni-popup>
 </template>
 <script setup>
 import Request from "luch-request";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import qs from "qs";
 import { useStorage } from "@vueuse/core";
 import { format } from "date-fns";
 const http = new Request();
 
-// http://101.35.211.235:3001/api/v1/log/getListByVersion?version=3.1.0.002
 const version = useStorage("version", "3.1.0.008");
 
+const pre = process.env.NODE_ENV === "development" ? "/so" : "/";
+
+const popup = ref("");
 const state = reactive({
   list: [],
   selected: 0,
   project: "console",
+  childList: [
+    "dvs-base",
+    "dvs-village",
+    "dvs-ffp",
+    "dvs-cons",
+    "dvs-company",
+    "dvs-facility",
+    "dvs-collect",
+    "dvs-gis",
+    "dvs-monitor",
+  ],
+  cmdStr: "",
 });
 const projectClick = (project, index) => {
   if (index >= 0) {
@@ -51,15 +100,57 @@ const projectClick = (project, index) => {
   searchClick();
 };
 
+const deployClick = (item) => {
+  console.log("deployClick", item);
+  if (item) {
+    state.cmdStr = item;
+  }
+  if (!state.cmdStr) {
+    uni.showToast({
+      icon: "none",
+      title: "请先选择要编译的项目",
+    });
+    return;
+  }
+  uni.showModal({
+    title: "温馨提示",
+    content: `确认即将编译项目:${state.cmdStr}`,
+    showCancel: false,
+    success: (e) => {
+      if (e.confirm) {
+        if (!item) {
+          // 为空时则是执行命令
+          deployApi();
+        }
+      }
+    },
+  });
+};
+
+const deployApi = () => {
+  let url = `${pre}/api/node/cicd?t=${new Date().getTime()}`;
+  http
+    .post(url, {
+      cmdStr: state.cmdStr,
+    })
+    .then((res) => {
+      console.log(res, "post request");
+    })
+    .catch((err) => {
+      console.log(err, "catch");
+    });
+};
+const openDeploy = () => {
+  console.log("openDeploy");
+  popup.value.open("bottom");
+};
 const searchClick = () => {
   let timestamp = Date.now();
-  let apiUrl = "/";
-  const pre = process.env.NODE_ENV === "development" ? "/so/" : `${apiUrl}`;
   const parames = {
     version: version.value,
     timestamp,
   };
-  let url = `${pre}api/v1/log/getListByVersion`;
+  let url = `${pre}/api/v1/log/getListByVersion`;
   if (state.project) {
     parames.project = state.project;
   }
