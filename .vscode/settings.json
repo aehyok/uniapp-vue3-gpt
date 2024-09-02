@@ -1,6 +1,8 @@
 {
   // 保存时修复来自所有插件的所有可自动修复的ESlint错误
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
   // 应通过ESLint验证的语言数组
   "eslint.validate": ["typescript", "vue", "html", "json"],
   // 默认格式化插件选择
