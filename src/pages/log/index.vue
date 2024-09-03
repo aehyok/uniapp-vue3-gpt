@@ -17,6 +17,42 @@
       >{{ item }}</view
     ></view
   >
+  <view v-if="state.selected == 0" style="margin-bottom: 60px" class="shining-border">
+    <view
+      style="
+        position: relative;
+        z-index: 1;
+        display: flex;
+        line-height: 25px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+      "
+      v-for="(item, index) in state.consoleResult"
+      :key="index"
+    >
+      <view class="circle-number">{{ index + 1 }}</view>
+      <view>{{ item }}</view>
+    </view>
+  </view>
+  <view v-if="state.selected == 1" style="margin-bottom: 60px" class="shining-border">
+    <view
+      style="
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+      "
+      v-for="(item, index) in state.mpResult"
+      :key="index"
+    >
+      <view class="circle-number">{{ index + 1 }}</view>
+      <view>{{ item }}</view>
+    </view>
+  </view>
+  <view v-if="state.selected == 2"> </view>
   <view v-for="(item, index) in state.list" :key="index">
     <view class="item">版本号：{{ item.version }}</view>
     <view class="item">时间：{{ format(new Date(item.createTime), "yyyy-MM-dd HH:mm:ss") }}</view>
@@ -25,7 +61,7 @@
     <view class="item">内容：{{ item.content }}</view>
     <view style="border-bottom: 1px solid red"></view>
   </view>
-  <view class="deploy-button" @click="openDeploy">deploy</view>
+  <view v-if="false" class="deploy-button" @click="openDeploy">deploy</view>
   <uni-popup ref="popup" type="bottom" background-color="#fff">
     <div style="width: 100vw; height: 75vh">
       <view style="display: flex; justify-content: space-between; align-items: center; padding: 10px">
@@ -78,8 +114,11 @@ const popup = ref("");
 const state = reactive({
   list: [],
   selected: 0,
+  mpResult: [],
+  consoleResult: [],
   project: "console",
   childList: [
+    "dvs-main",
     "dvs-base",
     "dvs-village",
     "dvs-ffp",
@@ -89,6 +128,7 @@ const state = reactive({
     "dvs-collect",
     "dvs-gis",
     "dvs-monitor",
+    "dvs-workflow",
   ],
   cmdStr: "",
 });
@@ -160,6 +200,30 @@ const searchClick = () => {
     .get(url)
     .then((res) => {
       state.list = res.data.data;
+      const infoList = state.list.filter((info) => info.type == "info");
+      if (state.selected == 0) {
+        state.consoleResult = [];
+        state.childList.forEach((item) => {
+          console.log(item, "item");
+          let containList = infoList.filter((info) => info.content.includes(item));
+          if (containList.length > 0) {
+            state.consoleResult.push(item);
+          }
+        });
+      } else if (state.selected == 1) {
+        // mp的话直接根据info的数量进行判断
+        state.mpResult = [];
+        console.log(infoList.length, "infoList");
+        if (infoList.length == 11) {
+          state.mpResult.push("git pull success");
+          state.mpResult.push("yarn、yarn build suceess");
+          state.mpResult.push("git tag suceess");
+          state.mpResult.push("git push release success");
+          state.mpResult.push("copy to dev and sit success");
+        }
+      } else if (state.selected == 2) {
+        console.log("state.selected == 2");
+      }
     })
     .catch((err) => {
       console.log(err, "catch");
@@ -204,5 +268,72 @@ button {
   background-color: #18bc37;
   color: white;
   border-color: white;
+}
+
+.shining-border {
+  width: 280px;
+  height: 280px;
+  margin: auto;
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.shining-border::before {
+  content: ".";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #92ec92 60deg,
+    #00ff00 120deg,
+    #20e620 180deg,
+    #20e620 240deg,
+    #0dbd0d 300deg,
+    transparent 360deg
+  );
+  animation: rotate 8s linear infinite;
+}
+
+.shining-border::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  background: white;
+  border-radius: 15px;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.circle-number {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 14px; /* 根据需要调整字体大小 */
+}
+
+.circle-number::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; /* 根据需要调整圆圈大小 */
+  height: 20px; /* 根据需要调整圆圈大小 */
+  border-radius: 50%;
+  background-color: #20e620; /* 根据需要调整圆圈颜色 */
+  z-index: -1; /* 将圆圈置于数字后面 */
 }
 </style>
